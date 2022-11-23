@@ -5,8 +5,8 @@ import mike from "../assets/mike-von-2hzL3NMOozs-unsplash.jpg";
 import logo from "../assets/logo-sans-fond.png";
 
 const navigation = [
-	{ name: "Créer un employé", href: "/create-employee" },
-	{ name: "DataBase des employés", href: "/employee-list" },
+	{ name: "Create an employee", href: "/create-employee" },
+	{ name: "Employees DataBase", href: "/employee-list" },
 ];
 
 const Home = () => {
