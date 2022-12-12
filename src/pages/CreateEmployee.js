@@ -4,33 +4,17 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import logo from "../assets/logo.jpg";
 import { Link } from "react-router-dom";
+import { states } from "../utils/States";
+import { department } from "../utils/Department";
 
-const people = [
-	{ id: 1, name: "Wade Cooper" },
-	{ id: 2, name: "Arlene Mccoy" },
-	{ id: 3, name: "Devon Webb" },
-	{ id: 4, name: "Tom Cook" },
-	{ id: 5, name: "Tanya Fox" },
-	{ id: 6, name: "Hellen Schmidt" },
-	{ id: 7, name: "Caroline Schultz" },
-	{ id: 8, name: "Mason Heaney" },
-	{ id: 9, name: "Claudie Smitham" },
-	{ id: 10, name: "Emil Schaefer" },
-];
-const department = [
-	{ id: 1, name: "Sales" },
-	{ id: 2, name: "Marketing" },
-	{ id: 3, name: "Engeneering" },
-	{ id: 4, name: "Human Resources" },
-	{ id: 5, name: "Legal" },
-];
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 
 const CreateEmployee = () => {
-	const [selected, setSelected] = useState(people[3]);
+	const [selected, setSelected] = useState(states[0]);
 	const [selectedDpt, setSelectedDpt] = useState(department[3]);
+
 	return (
 		<>
 			<div className="title flex items-center justify-between  w-1/2 mx-auto mt-12 ">
@@ -55,15 +39,14 @@ const CreateEmployee = () => {
 					>
 						Firstname
 					</label>
-					<div className="mt-1">
-						<input
-							type="text"
-							name="firstname"
-							id="firstname"
-							className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-							placeholder="Firstname"
-						/>
-					</div>
+
+					<input
+						type="text"
+						name="firstname"
+						id="firstname"
+						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+						placeholder="Firstname"
+					/>
 				</div>
 				<div className="mt-8">
 					<label
@@ -72,15 +55,13 @@ const CreateEmployee = () => {
 					>
 						Lastname
 					</label>
-					<div className="mt-1">
-						<input
-							type="text"
-							name="lastname"
-							id="lastname"
-							className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-							placeholder="Lastname"
-						/>
-					</div>
+					<input
+						type="text"
+						name="lastname"
+						id="lastname"
+						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+						placeholder="Lastname"
+					/>
 				</div>
 				<div className="mt-8">
 					<label
@@ -89,15 +70,14 @@ const CreateEmployee = () => {
 					>
 						Date of Birth
 					</label>
-					<div className="mt-1">
-						<input
-							type="date"
-							name="birthDate"
-							id="birthDate"
-							className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-							placeholder="birthDate"
-						/>
-					</div>
+
+					<input
+						type="date"
+						name="birthDate"
+						id="birthDate"
+						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+						placeholder="birthDate"
+					/>
 				</div>
 				<div className="mt-8">
 					<label
@@ -106,15 +86,14 @@ const CreateEmployee = () => {
 					>
 						Start Date
 					</label>
-					<div className="mt-1">
-						<input
-							type="date"
-							name="startdate"
-							id="startdate"
-							className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-							placeholder="startdate"
-						/>
-					</div>
+
+					<input
+						type="date"
+						name="startdate"
+						id="startdate"
+						className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+						placeholder="startdate"
+					/>
 				</div>
 				<div className="adress border mt-8 bg-green-200">
 					<h1 className="text-green-600 text-center mt-8">Address</h1>
@@ -125,15 +104,14 @@ const CreateEmployee = () => {
 						>
 							Street
 						</label>
-						<div className="mt-1">
-							<input
-								type="text"
-								name="street"
-								id="street"
-								className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-								placeholder="street"
-							/>
-						</div>
+
+						<input
+							type="text"
+							name="street"
+							id="street"
+							className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+							placeholder="street"
+						/>
 					</div>
 					<div className="mt-8 w-1/2 mx-auto">
 						<label
@@ -142,15 +120,14 @@ const CreateEmployee = () => {
 						>
 							City
 						</label>
-						<div className="mt-1">
-							<input
-								type="text"
-								name="city"
-								id="city"
-								className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-								placeholder="city"
-							/>
-						</div>
+
+						<input
+							type="text"
+							name="city"
+							id="city"
+							className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+							placeholder="city"
+						/>
 					</div>
 					<Listbox value={selected} onChange={setSelected}>
 						{({ open }) => (
@@ -160,7 +137,10 @@ const CreateEmployee = () => {
 								</Listbox.Label>
 								<div className="relative mt-1">
 									<Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500 sm:text-sm">
-										<span className="block truncate">{selected.name}</span>
+										{states && (
+											<span className="block truncate">{selected.name}</span>
+										)}
+
 										<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
 											<ChevronUpDownIcon
 												className="h-5 w-5 text-gray-400"
@@ -177,9 +157,9 @@ const CreateEmployee = () => {
 										leaveTo="opacity-0"
 									>
 										<Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-											{people.map((person) => (
+											{states.map((state) => (
 												<Listbox.Option
-													key={person.id}
+													key={state.id}
 													className={({ active }) =>
 														classNames(
 															active
@@ -188,7 +168,7 @@ const CreateEmployee = () => {
 															"relative cursor-default select-none py-2 pl-8 pr-4"
 														)
 													}
-													value={person}
+													value={state}
 												>
 													{({ selected, active }) => (
 														<>
@@ -198,7 +178,7 @@ const CreateEmployee = () => {
 																	"block truncate"
 																)}
 															>
-																{person.name}
+																{state.name}
 															</span>
 
 															{selected ? (
@@ -231,15 +211,14 @@ const CreateEmployee = () => {
 						>
 							Zip Code
 						</label>
-						<div className="mt-1">
-							<input
-								type="number"
-								name="zip"
-								id="zip"
-								className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-								placeholder="zip"
-							/>
-						</div>
+
+						<input
+							type="number"
+							name="zip"
+							id="zip"
+							className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+							placeholder="zip"
+						/>
 					</div>
 				</div>
 				<Listbox value={selectedDpt} onChange={setSelectedDpt}>
@@ -250,7 +229,10 @@ const CreateEmployee = () => {
 							</Listbox.Label>
 							<div className="relative mt-1">
 								<Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500 sm:text-sm">
-									<span className="block truncate">{selectedDpt.name}</span>
+									{department && (
+										<span className="block truncate">{selectedDpt.name}</span>
+									)}
+
 									<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
 										<ChevronUpDownIcon
 											className="h-5 w-5 text-gray-400"
@@ -278,7 +260,7 @@ const CreateEmployee = () => {
 														"relative cursor-default select-none py-2 pl-3 pr-9"
 													)
 												}
-												value={department}
+												value={elt}
 											>
 												{({ selectedDpt, active }) => (
 													<>
