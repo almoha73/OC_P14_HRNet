@@ -297,7 +297,7 @@ const EmployeeList = () => {
 				</div>
 			</div>
 
-			<div className="text-green-700 flex justify-between w-10/12 items-center mx-auto mt-8">
+			<div className="text-green-700 sm:flex-row gap-4 flex flex-col justify-between w-10/12 items-center mx-auto mt-8">
 				<p>
 					Showing <span>1 </span>to <span>5</span> of <span>5 </span>entries
 				</p>
