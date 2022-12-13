@@ -1,12 +1,16 @@
 import React from "react";
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import {
+	CheckIcon,
+	ChevronUpDownIcon,
+	CalendarIcon,
+} from "@heroicons/react/20/solid";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm, Controller } from "react-hook-form";
 import logo from "../assets/logo.jpg";
-import { Link } from "react-router-dom";
+import Navigation from "../components/Navigation";
 import { states } from "../utils/States";
 import { department } from "../utils/Department";
 
@@ -23,23 +27,18 @@ const CreateEmployee = () => {
 
 	return (
 		<>
-			<div className="title flex items-center justify-between  w-1/2 mx-auto mt-12 ">
+			<Navigation />
+			<div className="title sm:flex flex flex-col items-center justify-center  w-full mx-auto mt-12 ">
 				<img className="w-40" src={logo} alt="" />
 				<h1 className="text-center text-7xl text-green-700">HRNet</h1>
-				<Link
-					to="/employee-list"
-					className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-				>
-					View Current Employees
-				</Link>
 			</div>
-			<h2 className="text-center text-5xl text-green-700 mt-12">
+			<h2 className="text-center text-2xl sm:text-5xl text-green-700 mt-12">
 				Create Employee
 			</h2>
 
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="w-3/5 sm:w-2/5 mx-auto mt-8"
+				className="w-4/5 sm:w-2/5 mx-auto mt-8"
 			>
 				<div>
 					<label
@@ -85,16 +84,19 @@ const CreateEmployee = () => {
 						name="birthDate"
 						control={control}
 						render={({ field }) => (
-							<DatePicker
-								placeholderText="Select the date of birth"
-								selected={field.value}
-								onChange={(date) => field.onChange(date)}
-								className="mt-1 w-full rounded border-gray-300 focus:border-green-500 focus:ring-green-500"
-							/>
+							<>
+								<DatePicker
+									placeholderText="Select the date of birth"
+									selected={field.value}
+									onChange={(date) => field.onChange(date)}
+									className=" mt-1 w-full rounded border-gray-300 focus:border-green-500 focus:ring-green-500 placeholder:text-xs sm:placeholder:text-sm"
+								/>
+								<CalendarIcon className="w-5 relative left-[90%] bottom-8" />
+							</>
 						)}
 					/>
 				</div>
-				<div className="mt-8">
+				<div className="mt-8 ">
 					<label
 						htmlFor="startdate"
 						className="block text-sm font-medium text-gray-700"
@@ -106,18 +108,21 @@ const CreateEmployee = () => {
 						name="startDate"
 						control={control}
 						render={({ field }) => (
-							<DatePicker
-								placeholderText="Select the start date"
-								selected={field.value}
-								onChange={(date) => field.onChange(date)}
-								className="mt-1 w-full rounded border-gray-300 focus:border-green-500 focus:ring-green-500"
-							/>
+							<>
+								<DatePicker
+									placeholderText="Select the start date"
+									selected={field.value}
+									onChange={(date) => field.onChange(date)}
+									className="mt-1 w-full rounded border-gray-300 focus:border-green-500 focus:ring-green-500 placeholder:text-xs sm:placeholder:text-sm"
+								/>
+								<CalendarIcon className="w-5 relative left-[90%] bottom-8" />
+							</>
 						)}
 					/>
 				</div>
 				<div className="adress border mt-8 bg-green-200">
 					<h1 className="text-green-600 text-center mt-8">Address</h1>
-					<div className="mt-8 w-1/2 mx-auto">
+					<div className="mt-8 w-11/12 sm:w-1/2 mx-auto">
 						<label
 							htmlFor="street"
 							className="block text-sm font-medium text-gray-700"
@@ -134,7 +139,7 @@ const CreateEmployee = () => {
 							placeholder="street"
 						/>
 					</div>
-					<div className="mt-8 w-1/2 mx-auto">
+					<div className="mt-8 w-11/12 sm:w-1/2 mx-auto">
 						<label
 							htmlFor="city"
 							className="block text-sm font-medium text-gray-700"
@@ -164,7 +169,7 @@ const CreateEmployee = () => {
 								}}
 							>
 								{({ open }) => (
-									<div className="w-1/2 mx-auto">
+									<div className="w-11/12 sm:w-1/2 mx-auto">
 										<Listbox.Label className="block text-sm font-medium text-gray-700 mt-8">
 											State
 										</Listbox.Label>
@@ -245,7 +250,7 @@ const CreateEmployee = () => {
 							</Listbox>
 						)}
 					/>
-					<div className="mt-8 w-1/2 mx-auto mb-8">
+					<div className="mt-8 w-11/12 sm:w-1/2 mx-auto mb-8">
 						<label
 							htmlFor="zip"
 							className="block text-sm font-medium text-gray-700"

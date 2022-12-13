@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../assets/logo.jpg";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
+import Navigation from "../components/Navigation";
 
 const people = [
 	{
@@ -21,14 +22,17 @@ const people = [
 const EmployeeList = () => {
 	return (
 		<>
+			<Navigation />
 			<img className="mx-auto mt-8" src={logo} alt="logo" />
-			<h1 className="text-center text-5xl sm:mt-8 sm:mb-16 text-green-700 font-bold">
+			<h1 className="text-center text-2xl sm:text-5xl sm:mt-8 sm:mb-16 text-green-700 font-bold">
 				Current Employees
 			</h1>
 			<div className="px-4 sm:px-6 lg:px-8 ">
 				<div className="sm:flex sm:items-center sm:mb-12 ">
 					<div className="sm:flex sm:flex-col sm:w-1/4 mb-4">
-						<h1 className="text-xl font-semibold text-gray-900">Employees</h1>
+						<h1 className="mt-4 text-xl font-semibold text-gray-900">
+							Employees
+						</h1>
 						<p className="mt-2 text-sm text-gray-700">
 							A list of all the HRnet employees !
 						</p>
@@ -74,12 +78,6 @@ const EmployeeList = () => {
 								placeholder="Search an employee"
 							/>
 						</div>
-						<Link
-							to="/create-employee"
-							className="sm:w-1/4 inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-						>
-							Create an Employee
-						</Link>
 					</div>
 				</div>
 				<div className="mt-8 flex flex-col">
@@ -93,7 +91,10 @@ const EmployeeList = () => {
 												scope="col"
 												className=" py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8"
 											>
-												<a href="/" className="group inline-flex">
+												<a
+													href="/"
+													className="text-xs sm:text-sm group inline-flex"
+												>
 													Firstname
 													<span className=" ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
 														<ChevronUpDownIcon
@@ -107,7 +108,10 @@ const EmployeeList = () => {
 												scope="col"
 												className=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
-												<a href="/" className="group inline-flex">
+												<a
+													href="/"
+													className="text-xs sm:text-sm group inline-flex"
+												>
 													Lastname
 													<span className=" ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
 														<ChevronUpDownIcon
@@ -119,9 +123,12 @@ const EmployeeList = () => {
 											</th>
 											<th
 												scope="col"
-												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+												className="px-1  py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
-												<a href="/" className="group inline-flex">
+												<a
+													href="/"
+													className="text-xs sm:text-sm group inline-flex"
+												>
 													Start Date
 													<span className=" ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
 														<ChevronUpDownIcon
@@ -135,7 +142,10 @@ const EmployeeList = () => {
 												scope="col"
 												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
-												<a href="/" className="group inline-flex">
+												<a
+													href="/"
+													className="text-xs sm:text-sm group inline-flex"
+												>
 													Department
 													<span className=" ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
 														<ChevronUpDownIcon
@@ -149,7 +159,10 @@ const EmployeeList = () => {
 												scope="col"
 												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
-												<a href="/" className="group inline-flex">
+												<a
+													href="/"
+													className="text-xs sm:text-sm group inline-flex"
+												>
 													Date of Birth
 													<span className=" ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
 														<ChevronUpDownIcon
@@ -163,7 +176,10 @@ const EmployeeList = () => {
 												scope="col"
 												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
-												<a href="/" className="group inline-flex">
+												<a
+													href="/"
+													className="text-xs sm:text-sm group inline-flex"
+												>
 													Street
 													<span className=" ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
 														<ChevronUpDownIcon
@@ -177,7 +193,10 @@ const EmployeeList = () => {
 												scope="col"
 												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
-												<a href="/" className="group inline-flex">
+												<a
+													href="/"
+													className="text-xs sm:text-sm group inline-flex"
+												>
 													City
 													<span className=" ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
 														<ChevronUpDownIcon
@@ -191,7 +210,10 @@ const EmployeeList = () => {
 												scope="col"
 												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
-												<a href="/" className="group inline-flex">
+												<a
+													href="/"
+													className="text-xs sm:text-sm group inline-flex"
+												>
 													State
 													<span className=" ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
 														<ChevronUpDownIcon
@@ -205,7 +227,10 @@ const EmployeeList = () => {
 												scope="col"
 												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
-												<a href="/" className="group inline-flex">
+												<a
+													href="/"
+													className="text-xs sm:text-sm group inline-flex"
+												>
 													Zip Code
 													<span className=" ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
 														<ChevronUpDownIcon
