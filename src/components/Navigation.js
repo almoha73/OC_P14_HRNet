@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 export default function Navigation() {
 	const navigation = [
 		{ name: "Home", href: "/" },
-		{ name: "Create Emloyee", href: "/create-employee" },
+		{ name: "Create Employee", href: "/create-employee" },
 		{ name: "View Current Employees", href: "/employee-list" },
 	];
 
@@ -20,7 +20,7 @@ export default function Navigation() {
 						<div className="relative flex sm:w-full h-16 items-center justify-between">
 							<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
 								{/* Mobile menu button*/}
-								<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-green-700 hover:bg-green-200 hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-700">
+								<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-green-700 hover:bg-green-200 hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-700 ">
 									<span className="sr-only">Open main menu</span>
 									{open ? (
 										<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -31,15 +31,15 @@ export default function Navigation() {
 							</div>
 							<div className="flex  sm:w-full items-center justify-center sm:items-center sm:justify-center">
 								<div className="hidden sm:block sm:flex sm:justify-between w-full">
-									<div className="flex space-x-4">
+									<div className="flex space-x-8">
 										{navigation.map((item) => (
 											<NavLink
 												key={item.name}
 												to={item.href}
 												className={({ isActive }) =>
 													isActive
-														? "bg-green-200 text-green-700 sm:text-2xl"
-														: "text-green-700 hover:bg-green-200 hover:green-700 sm:text-2xl"
+														? "bg-green-200 text-green-700 sm:text-xl py-1 px-2 rounded"
+														: "text-green-700 hover:bg-green-200 hover:green-700 sm:text-xl py-1 px-2 rounded"
 												}
 												aria-current={item.current ? "page" : undefined}
 												end

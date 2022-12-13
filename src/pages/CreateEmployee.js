@@ -15,7 +15,6 @@ import { states } from "../utils/States";
 import { department } from "../utils/Department";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
@@ -24,8 +23,8 @@ function classNames(...classes) {
 const CreateEmployee = () => {
 	const [selected, setSelected] = useState(states[0]);
 	const [selectedDpt, setSelectedDpt] = useState(department[0]);
-
 	const { control, register, handleSubmit } = useForm();
+
 	const onSubmit = async (data) => {
 		console.log(data);
 		try {

@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import logo from "../assets/logo.jpg";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation";
+import { v4 as uuidv4 } from "uuid";
 
 const people = [
 	{
@@ -92,7 +93,7 @@ const EmployeeList = () => {
 												className=" py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8"
 											>
 												<a
-													href="/"
+													href="#"
 													className="text-xs sm:text-sm group inline-flex"
 												>
 													Firstname
@@ -109,7 +110,7 @@ const EmployeeList = () => {
 												className=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
 												<a
-													href="/"
+													href="#"
 													className="text-xs sm:text-sm group inline-flex"
 												>
 													Lastname
@@ -126,7 +127,7 @@ const EmployeeList = () => {
 												className="px-1  py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
 												<a
-													href="/"
+													href="#"
 													className="text-xs sm:text-sm group inline-flex"
 												>
 													Start Date
@@ -143,7 +144,7 @@ const EmployeeList = () => {
 												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
 												<a
-													href="/"
+													href="#"
 													className="text-xs sm:text-sm group inline-flex"
 												>
 													Department
@@ -160,7 +161,7 @@ const EmployeeList = () => {
 												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
 												<a
-													href="/"
+													href="#"
 													className="text-xs sm:text-sm group inline-flex"
 												>
 													Date of Birth
@@ -177,7 +178,7 @@ const EmployeeList = () => {
 												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
 												<a
-													href="/"
+													href="#"
 													className="text-xs sm:text-sm group inline-flex"
 												>
 													Street
@@ -194,7 +195,7 @@ const EmployeeList = () => {
 												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
 												<a
-													href="/"
+													href="#"
 													className="text-xs sm:text-sm group inline-flex"
 												>
 													City
@@ -211,7 +212,7 @@ const EmployeeList = () => {
 												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
 												<a
-													href="/"
+													href="#"
 													className="text-xs sm:text-sm group inline-flex"
 												>
 													State
@@ -228,7 +229,7 @@ const EmployeeList = () => {
 												className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
 											>
 												<a
-													href="/"
+													href="#"
 													className="text-xs sm:text-sm group inline-flex"
 												>
 													Zip Code
@@ -250,7 +251,7 @@ const EmployeeList = () => {
 									</thead>
 									<tbody className="divide-y divide-gray-200 bg-white">
 										{people.map((person) => (
-											<tr key={person.email}>
+											<tr key={uuidv4()}>
 												<td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
 													{person.Firstname}
 												</td>
@@ -280,7 +281,7 @@ const EmployeeList = () => {
 												</td>
 												<td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8">
 													<a
-														href="/"
+														href="#"
 														className="text-green-600 hover:text-green-900"
 													>
 														Edit<span className="sr-only">, {person.name}</span>
@@ -293,6 +294,19 @@ const EmployeeList = () => {
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+
+			<div className="text-green-700 flex justify-between w-10/12 items-center mx-auto mt-8">
+				<p>
+					Showing <span>1 </span>to <span>5</span> of <span>5 </span>entries
+				</p>
+				<div>
+					<button className="">Previous</button>
+					<button className="p-2 border border-green-700 rounded mx-2">
+						1
+					</button>
+					<button>Next</button>
 				</div>
 			</div>
 		</>
