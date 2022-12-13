@@ -13,6 +13,9 @@ import logo from "../assets/logo.jpg";
 import Navigation from "../components/Navigation";
 import { states } from "../utils/States";
 import { department } from "../utils/Department";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import { v4 as uuidv4 } from "uuid";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
@@ -23,7 +26,15 @@ const CreateEmployee = () => {
 	const [selectedDpt, setSelectedDpt] = useState(department[0]);
 
 	const { control, register, handleSubmit } = useForm();
-	const onSubmit = (data) => console.log(data);
+	const onSubmit = async (data) => {
+		console.log(data);
+		try {
+			const docRef = await addDoc(collection(db, "employees"), data);
+			console.log("Document written with ID: ", docRef.id);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<>
