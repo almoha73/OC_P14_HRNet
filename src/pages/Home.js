@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import mike from "../assets/mike-von-2hzL3NMOozs-unsplash.jpg";
+import mike from "../assets/mike-von-2hzL3NMOozs-unsplash2.jpg";
 import logo from "../assets/logo-sans-fond.png";
 
 const navigation = [
