@@ -1,14 +1,29 @@
+import React from "react";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 
 export default function Navigation() {
-	const navigation = [
-		{ name: "Home", href: "/" },
-		{ name: "Create Employee", href: "/create-employee" },
-		{ name: "View Current Employees", href: "/employee-list" },
-	];
+	const navigate = useNavigate();
 
+	const navigation = [
+		{ name: "Home", href: "/private/home" },
+		{ name: "Create Employee", href: "/private/create-employee" },
+		{ name: "View Current Employees", href: "/private/employee-list" },
+	];
+	const logOut = async () => {
+		try {
+			await signOut(auth);
+			navigate("/");
+		} catch {
+			alert(
+				"For some reaons we can't deconnect, please check tour internet connexion and retry"
+			);
+		}
+	};
 	return (
 		<Disclosure
 			as="nav"
@@ -48,13 +63,19 @@ export default function Navigation() {
 											</NavLink>
 										))}
 									</div>
+									<button
+										onClick={logOut}
+										className="border px-3  rounded bg-green-700 text-green-200 hover:bg-green-200 hover:text-green-700"
+									>
+										SignOut
+									</button>
 								</div>
 							</div>
 						</div>
 					</div>
 
 					<Disclosure.Panel className="sm:hidden ">
-						<div className="space-y-4 px-2 pt-2 pb-3 flex flex-col">
+						<div className="space-y-3 px-2 pt-2 pb-3 flex flex-col">
 							{navigation.map((item) => (
 								<Disclosure.Button key={item.name}>
 									<NavLink
@@ -72,6 +93,12 @@ export default function Navigation() {
 								</Disclosure.Button>
 							))}
 						</div>
+						<button
+							onClick={logOut}
+							className="mx-auto block border px-3  rounded bg-green-700 text-green-200 hover:bg-green-200 hover:text-green-700"
+						>
+							SignOut
+						</button>
 					</Disclosure.Panel>
 				</>
 			)}

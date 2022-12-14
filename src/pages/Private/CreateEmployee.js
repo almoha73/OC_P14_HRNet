@@ -9,12 +9,12 @@ import {
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm, Controller } from "react-hook-form";
-import logo from "../assets/logo.jpg";
-import Navigation from "../components/Navigation";
-import { states } from "../utils/States";
-import { department } from "../utils/Department";
+import logo from "../../assets/logo.jpg";
+import Navigation from "../../components/Navigation";
+import { states } from "../../utils/States";
+import { department } from "../../utils/Department";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");

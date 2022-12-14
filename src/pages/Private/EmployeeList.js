@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import logo from "../assets/logo.jpg";
+import logo from "../../assets/logo.jpg";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import Navigation from "../components/Navigation";
+import Navigation from "../../components/Navigation";
 import { v4 as uuidv4 } from "uuid";
 
 const people = [
