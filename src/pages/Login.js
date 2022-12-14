@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth/AuthContext";
 import logo from "../assets/logo.jpg";
@@ -7,14 +7,12 @@ import { useForm } from "react-hook-form";
 export default function Login() {
 	const { signIn } = useContext(AuthContext);
 	const navigate = useNavigate();
-
 	const { register, handleSubmit } = useForm();
 
 	const onSubmit = async (data) => {
 		console.log(data);
 		try {
 			await signIn(data.email, data.password);
-
 			navigate("/private/home");
 		} catch (error) {
 			console.log(error);
@@ -38,12 +36,7 @@ export default function Login() {
 
 					<div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
 						<div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-							<form
-								onSubmit={handleSubmit(onSubmit)}
-								className="space-y-6"
-								action="#"
-								method="POST"
-							>
+							<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 								<div>
 									<label
 										htmlFor="email"
@@ -96,6 +89,9 @@ export default function Login() {
 								</div>
 							</form>
 						</div>
+						<p className="text-green-700 text-xs text-center mt-12">
+							Try with this login for the test : hrnetadmin@test.fr and azerty
+						</p>
 					</div>
 				</div>
 			</div>
