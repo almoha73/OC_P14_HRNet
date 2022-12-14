@@ -53,8 +53,8 @@ export default function Navigation() {
 												to={item.href}
 												className={({ isActive }) =>
 													isActive
-														? "bg-green-200 text-green-700 sm:text-xl py-1 px-2 rounded"
-														: "text-green-700 hover:bg-green-200 hover:green-700 sm:text-xl py-1 px-2 rounded"
+														? "bg-green-200 text-green-700 sm:text-lg py-1 px-2 rounded"
+														: "text-green-700 hover:bg-green-200 hover:green-700 sm:text-lg py-1 px-2 rounded"
 												}
 												aria-current={item.current ? "page" : undefined}
 												end
@@ -82,8 +82,8 @@ export default function Navigation() {
 										to={item.href}
 										className={({ isActive }) =>
 											isActive
-												? "bg-green-200 text-green-500 sm:text-2xl block p-2 w-full  mx-auto"
-												: "text-green-500 hover:bg-green-200 hover:green-700 sm:text-2xl p-2  mx-auto block"
+												? "bg-green-200 text-green-500 sm:text-xl lg:text-2xl block p-2 w-full  mx-auto"
+												: "text-green-500 hover:bg-green-200 hover:green-700 sm:text-xl lg:text-2xl p-2  mx-auto block"
 										}
 										aria-current={item.current ? "page" : undefined}
 										end
