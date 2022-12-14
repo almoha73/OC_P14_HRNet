@@ -5,6 +5,7 @@ import EmployeeList from "./pages/Private/EmployeeList";
 import Home from "./pages/Private/Home";
 import Login from "./pages/Login";
 import Private from "./pages/Private/Private";
+import Modal from "./components/Modal";
 
 function App() {
 	return (
@@ -22,7 +23,7 @@ function App() {
 						element={<EmployeeList />}
 					></Route>
 				</Route>
-
+				<Route path="/modal" element={<Modal />}></Route>
 				<Route path="*"></Route>
 			</Routes>
 		</div>
