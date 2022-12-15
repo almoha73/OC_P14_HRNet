@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../../assets/logo.jpg";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import Navigation from "../../components/Navigation";
 import { v4 as uuidv4 } from "uuid";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const people = [
 	{
@@ -20,7 +22,20 @@ const people = [
 	// More people...
 ];
 
+const getEmployee = async () => {
+	const querySnapshot = await getDocs(collection(db, "employees"));
+	console.log(querySnapshot);
+	querySnapshot.forEach((doc) => {
+		// doc.data() is never undefined for query doc snapshots
+		console.log(doc.id, " => ", doc.data());
+	});
+};
+
 const EmployeeList = () => {
+	useEffect(() => {
+		getEmployee();
+	}, []);
+
 	return (
 		<>
 			<Navigation />

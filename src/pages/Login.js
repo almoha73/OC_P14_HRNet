@@ -10,7 +10,6 @@ export default function Login() {
 	const { register, handleSubmit } = useForm();
 
 	const onSubmit = async (data) => {
-		console.log(data);
 		try {
 			await signIn(data.email, data.password);
 			navigate("/private/home");

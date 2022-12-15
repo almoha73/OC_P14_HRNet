@@ -26,6 +26,7 @@ const CreateEmployee = () => {
 	const [selectedDpt, setSelectedDpt] = useState(department[0]);
 	const { control, register, handleSubmit } = useForm();
 	const [modal, setModal] = useState(false);
+
 	const toggleModal = () => {
 		setModal(!modal);
 	};
