@@ -1,14 +1,8 @@
 import React from "react";
-import { Fragment, useState } from "react";
-import { Listbox, Transition } from "@headlessui/react";
+import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import { useForm, Controller } from "react-hook-form";
 import logo from "../../assets/logo.jpg";
 import Navigation from "../../components/Navigation";
-import { states } from "../../utils/States";
-import { department } from "../../utils/Department";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../firebase";
 import Modal from "../../components/Modal";
 import Form from "../../components/Form/Form"
 
