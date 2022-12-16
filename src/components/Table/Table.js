@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect } from "react";
+import React from "react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { v4 as uuidv4 } from "uuid";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase";
 import { columnName } from "./ColumnName";
+import UseEmployee from "../../hooks/UseEmployee";
 
 const people = [
 	"Agnès",
@@ -19,22 +18,8 @@ const people = [
 ];
 
 const Table = () => {
-	useEffect(() => {
-		const getEmployee = async () => {
-			const querySnapshot = await getDocs(collection(db, "employees"));
-			let array = [];
-			querySnapshot.forEach((doc) => {
-				// doc.data() is never undefined for query doc snapshots
-				const data = doc.data();
-				array.push(data);
-				console.log(array);
-			});
-		};
-		const timestamp = 529110000;
-		const timestamp2 = new Date(timestamp * 1000);
-		console.log(timestamp2.toLocaleDateString("fr"));
-		getEmployee();
-	}, []);
+	const { employeeData } = UseEmployee();
+	console.log(employeeData);
 	return (
 		<div>
 			<table className=" divide-y divide-green-300">
@@ -42,6 +27,7 @@ const Table = () => {
 					<tr>
 						{columnName.map((elt) => (
 							<th
+								key={uuidv4()}
 								scope="col"
 								className=" py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8"
 							>
@@ -59,9 +45,12 @@ const Table = () => {
 					</tr>
 				</thead>
 				<tbody className="divide-y divide-gray-200 bg-white">
-					<tr key={uuidv4()}>
+					<tr>
 						{people.map((elt) => (
-							<td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm  text-gray-900 sm:pl-6 lg:pl-8">
+							<td
+								key={uuidv4()}
+								className="whitespace-nowrap py-4 pl-4 pr-3 text-sm  text-gray-900 sm:pl-6 lg:pl-8"
+							>
 								{elt}
 							</td>
 						))}
