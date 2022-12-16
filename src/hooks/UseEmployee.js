@@ -7,26 +7,7 @@ const UseEmployee = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(null);
 
-	useEffect(() => {
-		const getEmployee = async () => {
-			try {
-				const querySnapshot = await getDocs(collection(db, "employees"));
-				let array = [];
-				querySnapshot.forEach((doc) => {
-					const data = doc.data();
-					array.push(data);
-					setEmployeeData(array);
-					setIsLoading(false);
-				});
-			} catch (error) {
-				setError(error);
-			}
-		};
-		const timestamp = 529110000;
-		const timestamp2 = new Date(timestamp * 1000);
-		console.log(timestamp2.toLocaleDateString("fr"));
-		getEmployee();
-	}, []);
+	useEffect(() => {}, []);
 
 	return {
 		employeeData,
