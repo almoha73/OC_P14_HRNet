@@ -1,25 +1,21 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { v4 as uuidv4 } from "uuid";
 import { columnName } from "./ColumnName";
-import UseEmployee from "../../hooks/UseEmployee";
-
-const people = [
-	"Agnès",
-	"Beaumatin",
-	"10/18/2021",
-	"Dev Web",
-	"10/18/1973",
-	"38 rue Commandant Hautreux",
-	"Bordeaux",
-	"AZ",
-	"33300",
-];
+import { getEmployee } from "../../utils/ManageData";
 
 const Table = () => {
-	const { employeeData } = UseEmployee();
-	console.log(employeeData);
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		const employees = async () => {
+			const d = await getEmployee();
+			setData(d);
+		};
+		employees();
+	}, []);
+	const employees = data;
+
 	return (
 		<div>
 			<table className=" divide-y divide-green-300">
@@ -45,16 +41,18 @@ const Table = () => {
 					</tr>
 				</thead>
 				<tbody className="divide-y divide-gray-200 bg-white">
-					<tr>
-						{people.map((elt) => (
-							<td
-								key={uuidv4()}
-								className="whitespace-nowrap py-4 pl-4 pr-3 text-sm  text-gray-900 sm:pl-6 lg:pl-8"
-							>
-								{elt}
-							</td>
-						))}
-					</tr>
+					{employees.map((el) => (
+						<tr key={uuidv4()}>
+							{el.map((elt) => (
+								<td
+									key={uuidv4()}
+									className="whitespace-nowrap py-4 pl-4 pr-3 text-sm  text-gray-900 sm:pl-6 lg:pl-8"
+								>
+									{elt}
+								</td>
+							))}
+						</tr>
+					))}
 				</tbody>
 			</table>
 		</div>

@@ -13,7 +13,6 @@ const UseEmployee = () => {
 				const querySnapshot = await getDocs(collection(db, "employees"));
 				let array = [];
 				querySnapshot.forEach((doc) => {
-					// doc.data() is never undefined for query doc snapshots
 					const data = doc.data();
 					array.push(data);
 					setEmployeeData(array);
