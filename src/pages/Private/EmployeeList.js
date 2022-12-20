@@ -1,10 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/logo.jpg";
 import Navigation from "../../components/Navigation";
 import Table from "../../components/Table/Table";
 
 const EmployeeList = () => {
+	const [searchInput, setSearchInput] = useState("");
+	const handleChange = (val) => {
+		setSearchInput(val);
+		console.log(val);
+	};
+	console.log(searchInput);
 	return (
 		<>
 			<Navigation />
@@ -56,6 +62,8 @@ const EmployeeList = () => {
 						</label>
 						<div className="mt-1">
 							<input
+								onChange={(e) => handleChange(e.target.value)}
+								value={searchInput}
 								type="text"
 								name="firstname"
 								id="firstname"
@@ -69,7 +77,7 @@ const EmployeeList = () => {
 					<div className="overflow-x-auto sm:-mx-auto ">
 						<div className="inline-block min-w-full py-2 align-middle">
 							<div className="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5">
-								<Table />
+								<Table val={searchInput} />
 							</div>
 						</div>
 					</div>
