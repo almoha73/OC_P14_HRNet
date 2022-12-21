@@ -3,18 +3,25 @@ import React, { useEffect, useState } from "react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { v4 as uuidv4 } from "uuid";
 import { columnName } from "./ColumnName";
-import { getEmployee } from "../../utils/ManageData";
+import { useContext } from "react";
+import { EmployeeContext } from "../../context/getEmployee/employeeContext";
 
-const Table = () => {
-	const [data, setData] = useState([]);
-	useEffect(() => {
-		const employees = async () => {
-			const d = await getEmployee();
-			setData(d);
-		};
-		employees();
-	}, []);
-	const employees = data;
+const Table = ({ val, employees }) => {
+	console.log(employees);
+	// const { getEmployee } = useContext(EmployeeContext);
+	// const [employees, setEmployees] = useState([]);
+
+	// useEffect(() => {
+	// 	const user = async () => {
+	// 		const d = await getEmployee();
+	// 		setEmployees(d);
+	// 	};
+	// 	user();
+	// }, [getEmployee]);
+
+	// if (!employees) {
+	// 	return <>...Loading</>;
+	// }
 
 	return (
 		<div>
@@ -41,18 +48,19 @@ const Table = () => {
 					</tr>
 				</thead>
 				<tbody className="divide-y divide-gray-200 bg-white">
-					{employees.map((el) => (
-						<tr key={uuidv4()}>
-							{el.map((elt) => (
-								<td
-									key={uuidv4()}
-									className="whitespace-nowrap py-4 pl-4 pr-3 text-sm  text-gray-900 sm:pl-6 lg:pl-8"
-								>
-									{elt}
-								</td>
-							))}
-						</tr>
-					))}
+					{employees &&
+						employees?.map((el) => (
+							<tr key={uuidv4()}>
+								{el.map((elt) => (
+									<td
+										key={uuidv4()}
+										className="whitespace-nowrap py-4 pl-4 pr-3 text-sm  text-gray-900 sm:pl-6 lg:pl-8"
+									>
+										{elt && elt?.charAt(0).toUpperCase() + elt?.slice(1)}
+									</td>
+								))}
+							</tr>
+						))}
 				</tbody>
 			</table>
 		</div>

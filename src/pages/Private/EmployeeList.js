@@ -1,16 +1,45 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import logo from "../../assets/logo.jpg";
 import Navigation from "../../components/Navigation";
 import Table from "../../components/Table/Table";
+import { EmployeeContext } from "../../context/getEmployee/employeeContext";
 
 const EmployeeList = () => {
-	const [searchInput, setSearchInput] = useState("");
+	const { getEmployee } = useContext(EmployeeContext);
+	const [employees, setEmployees] = useState([]);
+
+	useEffect(() => {
+		const user = async () => {
+			const d = await getEmployee();
+			setEmployees(d);
+		};
+		user();
+	}, [getEmployee]);
+
 	const handleChange = (val) => {
-		setSearchInput(val);
-		console.log(val);
+		let data = [];
+		if (val.length > 2) {
+			const filterData = employees?.map((employee) => {
+				return employee.filter((elt) => {
+					if (elt?.includes(val?.toLowerCase())) {
+						console.log(employee);
+						data.push(employee);
+						setEmployees([...new Set(data)]);
+					}
+					return employees;
+				});
+			});
+			console.log(filterData);
+		} else {
+			const user = async () => {
+				const d = await getEmployee();
+				setEmployees(d);
+			};
+			user();
+		}
 	};
-	console.log(searchInput);
+
 	return (
 		<>
 			<Navigation />
@@ -63,7 +92,6 @@ const EmployeeList = () => {
 						<div className="mt-1">
 							<input
 								onChange={(e) => handleChange(e.target.value)}
-								value={searchInput}
 								type="text"
 								name="firstname"
 								id="firstname"
@@ -77,7 +105,7 @@ const EmployeeList = () => {
 					<div className="overflow-x-auto sm:-mx-auto ">
 						<div className="inline-block min-w-full py-2 align-middle">
 							<div className="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5">
-								<Table val={searchInput} />
+								<Table employees={employees} />
 							</div>
 						</div>
 					</div>

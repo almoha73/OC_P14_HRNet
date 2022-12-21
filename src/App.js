@@ -6,6 +6,7 @@ import Home from "./pages/Private/Home";
 import Login from "./pages/Login";
 import Private from "./pages/Private/Private";
 import Modal from "./components/Modal";
+import { EmployeeContextProvider } from "./context/getEmployee/employeeContext";
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 						path="/private/create-employee"
 						element={<CreateEmployee />}
 					></Route>
+
 					<Route
 						path="/private/employee-list"
 						element={<EmployeeList />}
