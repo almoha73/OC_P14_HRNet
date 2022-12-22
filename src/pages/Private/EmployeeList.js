@@ -1,20 +1,23 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import logo from "../../assets/logo.jpg";
 import Navigation from "../../components/Navigation";
 import Table from "../../components/Table/Table";
 import { EmployeeContext } from "../../context/getEmployee/employeeContext";
 
 const EmployeeList = () => {
-	const { getEmployee } = useContext(EmployeeContext);
+	const {
+		getEmployee,
+		tableState: { searchSort },
+	} = useContext(EmployeeContext);
+
 	const [employees, setEmployees] = useState([]);
 
 	useEffect(() => {
-		const user = async () => {
-			const d = await getEmployee();
-			setEmployees(d);
-		};
-		user();
+		const e = getEmployee();
+		setTimeout(() => {
+			setEmployees(e);
+		}, 300);
 	}, [getEmployee]);
 
 	const handleChange = (val) => {
@@ -32,11 +35,7 @@ const EmployeeList = () => {
 			});
 			console.log(filterData);
 		} else {
-			const user = async () => {
-				const d = await getEmployee();
-				setEmployees(d);
-			};
-			user();
+			setEmployees(getEmployee());
 		}
 	};
 
@@ -105,7 +104,7 @@ const EmployeeList = () => {
 					<div className="overflow-x-auto sm:-mx-auto ">
 						<div className="inline-block min-w-full py-2 align-middle">
 							<div className="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5">
-								<Table employees={employees} />
+								{employees && <Table employees={employees} />}
 							</div>
 						</div>
 					</div>

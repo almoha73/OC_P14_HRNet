@@ -1,28 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { v4 as uuidv4 } from "uuid";
 import { columnName } from "./ColumnName";
-import { useContext } from "react";
-import { EmployeeContext } from "../../context/getEmployee/employeeContext";
 
-const Table = ({ val, employees }) => {
+const Table = ({ employees }) => {
 	console.log(employees);
-	// const { getEmployee } = useContext(EmployeeContext);
-	// const [employees, setEmployees] = useState([]);
 
-	// useEffect(() => {
-	// 	const user = async () => {
-	// 		const d = await getEmployee();
-	// 		setEmployees(d);
-	// 	};
-	// 	user();
-	// }, [getEmployee]);
-
-	// if (!employees) {
-	// 	return <>...Loading</>;
-	// }
-
+	
 	return (
 		<div>
 			<table className=" divide-y divide-green-300">
@@ -51,7 +36,7 @@ const Table = ({ val, employees }) => {
 					{employees &&
 						employees?.map((el) => (
 							<tr key={uuidv4()}>
-								{el.map((elt) => (
+								{el?.map((elt) => (
 									<td
 										key={uuidv4()}
 										className="whitespace-nowrap py-4 pl-4 pr-3 text-sm  text-gray-900 sm:pl-6 lg:pl-8"

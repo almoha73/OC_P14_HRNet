@@ -6,7 +6,6 @@ import Home from "./pages/Private/Home";
 import Login from "./pages/Login";
 import Private from "./pages/Private/Private";
 import Modal from "./components/Modal";
-import { EmployeeContextProvider } from "./context/getEmployee/employeeContext";
 
 function App() {
 	return (

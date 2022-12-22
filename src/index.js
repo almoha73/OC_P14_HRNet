@@ -7,13 +7,11 @@ import { AuthContextProvider } from "./context/auth/AuthContext";
 import { EmployeeContextProvider } from "./context/getEmployee/employeeContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<React.StrictMode>
-		<BrowserRouter>
+	<BrowserRouter>
+		<AuthContextProvider>
 			<EmployeeContextProvider>
-				<AuthContextProvider>
-					<App />
-				</AuthContextProvider>
+				<App />
 			</EmployeeContextProvider>
-		</BrowserRouter>
-	</React.StrictMode>
+		</AuthContextProvider>
+	</BrowserRouter>
 );
