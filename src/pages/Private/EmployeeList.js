@@ -1,44 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React from "react";
 import logo from "../../assets/logo.jpg";
 import Navigation from "../../components/Navigation";
-import Table from "../../components/Table/Table";
-import { EmployeeContext } from "../../context/getEmployee/employeeContext";
+import Tables from "../../components/Table/Tables";
 
 const EmployeeList = () => {
-	const {
-		getEmployee,
-		tableState: { searchSort },
-	} = useContext(EmployeeContext);
-
-	const [employees, setEmployees] = useState([]);
-
-	useEffect(() => {
-		const e = getEmployee();
-		setTimeout(() => {
-			setEmployees(e);
-		}, 300);
-	}, [getEmployee]);
-
-	const handleChange = (val) => {
-		let data = [];
-		if (val.length > 2) {
-			const filterData = employees?.map((employee) => {
-				return employee.filter((elt) => {
-					if (elt?.includes(val?.toLowerCase())) {
-						console.log(employee);
-						data.push(employee);
-						setEmployees([...new Set(data)]);
-					}
-					return employees;
-				});
-			});
-			console.log(filterData);
-		} else {
-			setEmployees(getEmployee());
-		}
-	};
-
 	return (
 		<>
 			<Navigation />
@@ -90,7 +56,7 @@ const EmployeeList = () => {
 						</label>
 						<div className="mt-1">
 							<input
-								onChange={(e) => handleChange(e.target.value)}
+								// onChange={(e) => handleChange(e.target.value)}
 								type="text"
 								name="firstname"
 								id="firstname"
@@ -104,7 +70,7 @@ const EmployeeList = () => {
 					<div className="overflow-x-auto sm:-mx-auto ">
 						<div className="inline-block min-w-full py-2 align-middle">
 							<div className="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5">
-								{employees && <Table employees={employees} />}
+								<Tables />
 							</div>
 						</div>
 					</div>
@@ -114,13 +80,13 @@ const EmployeeList = () => {
 					<p>
 						Showing <span>1 </span>to <span>5</span> of <span>5 </span>entries
 					</p>
-					<div>
+					{/* <div>
 						<button className="">Previous</button>
 						<button className="p-2 border border-green-700 rounded mx-2">
 							1
 						</button>
 						<button>Next</button>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</>

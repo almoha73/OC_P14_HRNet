@@ -10,3 +10,41 @@
 	box-sizing: border-box;
 	/* background-color: rgb(167 243 208); */
 }
+div.ant-table-header > table > colgroup {
+	background-color: #f0fdf4 !important;
+}
+
+.ant-pagination-item.ant-pagination-item-2.ant-pagination-item-active {
+	border-color: green;
+}
+.ant-pagination-item.ant-pagination-item-2.ant-pagination-item-active > a {
+	color: green;
+}
+#root
+	> div
+	> div
+	> div.mt-8.flex.w-full.mx-auto
+	> div
+	> div
+	> div
+	> div
+	> div
+	> div
+	> div
+	> div
+	> div
+	> div.ant-table-header
+	> table
+	> thead
+	> tr
+	> th:nth-child(2)
+	> div
+	> span.ant-table-column-sorter.ant-table-column-sorter-full
+	> span
+	> span.anticon.anticon-caret-up.ant-table-column-sorter-up
+	> svg {
+	fill: #f0fdf4;
+}
+.anticon.anticon-caret-down.ant-table-column-sorter-down.active > svg {
+	fill: green;
+}

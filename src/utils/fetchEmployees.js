@@ -1,5 +1,26 @@
-// import { collection, getDocs } from "firebase/firestore";
-// import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+
+export const getEmployees = () => {
+	try {
+		let dataEmployees = [];
+		getDocs(collection(db, "employees")).then((querySnapshot) =>
+			querySnapshot.forEach((doc) => {
+				const data = doc.data();
+				const key = doc.id;
+				//console.log(data);
+				const newData = { key: key, employees: data };
+				dataEmployees.push(newData);
+
+				//console.log(dataEmployees);
+			})
+		);
+
+		return dataEmployees;
+	} catch (error) {
+		console.log(error);
+	}
+};
 
 // const timestampToDate = (seconds) => {
 // 	return new Date(seconds * 1000);
@@ -44,4 +65,21 @@
 // 	}
 // };
 
-
+// const handleChange = (val) => {
+// 	let data = [];
+// 	if (val.length > 2) {
+// 		const filterData = employees?.map((employee) => {
+// 			return employee.filter((elt) => {
+// 				if (elt?.includes(val?.toLowerCase())) {
+// 					console.log(employee);
+// 					data.push(employee);
+// 					setEmployees([...new Set(data)]);
+// 				}
+// 				return employees;
+// 			});
+// 		});
+// 		console.log(filterData);
+// 	} else {
+// 		setEmployees(getEmployee());
+// 	}
+// };
