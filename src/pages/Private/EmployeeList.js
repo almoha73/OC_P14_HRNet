@@ -1,10 +1,69 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo.jpg";
 import Navigation from "../../components/Navigation";
 import Tables from "../../components/Table/Tables";
+import { getEmployees } from "../../utils/fetchEmployees";
+import ManageDataEmployees from "../../utils/ManageDataEmployees";
+import { textData } from "../../utils/ManageDataEmployees";
 
 const EmployeeList = () => {
+	const [employees, setEmployees] = useState([]);
+
+	useEffect(() => {
+		const data = getEmployees();
+		console.log(data);
+		//setTimeOut pour que le management des datas ne commencent pas avant que la récupération des données soient faites
+		setTimeout(() => {
+			const d = data?.map((elt) => new ManageDataEmployees(elt));
+			console.log(d);
+			setEmployees(d);
+		}, 300);
+	}, []);
+
+	function makeText() {
+		let textArray = [];
+		employees?.forEach((employee) => {
+			const { key, firstname, lastname, department, street, city, state } =
+				employee;
+
+			textArray?.push(
+				new textData(
+					key,
+					firstname
+						.concat(",")
+						.concat(lastname)
+						.concat(",")
+						.concat(department)
+						.concat(",")
+						.concat(street)
+						.concat(",")
+						.concat(city)
+						.concat(",")
+						.concat(state),
+					employee
+				)
+			);
+		});
+		console.log(textArray);
+		return textArray;
+	}
+
+	/**
+	 * global search
+	 */
+	const [search, setSearch] = useState([]);
+	const handleSearch = (val) => {
+		let f = [];
+		const data = makeText();
+		const e = data.filter((word) => word.text.includes(val.toLowerCase()));
+		for (let elt of e) {
+			f.push(elt.employee);
+		}
+		console.log(f);
+		setSearch(f);
+	};
+
 	return (
 		<>
 			<Navigation />
@@ -56,7 +115,7 @@ const EmployeeList = () => {
 						</label>
 						<div className="mt-1">
 							<input
-								// onChange={(e) => handleChange(e.target.value)}
+								onChange={(e) => handleSearch(e.target.value)}
 								type="text"
 								name="firstname"
 								id="firstname"
@@ -70,7 +129,11 @@ const EmployeeList = () => {
 					<div className="overflow-x-auto sm:-mx-auto ">
 						<div className="inline-block min-w-full py-2 align-middle">
 							<div className="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5">
-								<Tables />
+								{search.length > 0 ? (
+									<Tables data={search} />
+								) : (
+									<Tables data={employees} />
+								)}
 							</div>
 						</div>
 					</div>
