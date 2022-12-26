@@ -1,26 +1,28 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import logo from "../../assets/logo.jpg";
 import Navigation from "../../components/Navigation";
 import Tables from "../../components/Table/Tables";
 import { getEmployees } from "../../utils/fetchEmployees";
 import ManageDataEmployees from "../../utils/ManageDataEmployees";
-import { textData } from "../../utils/ManageDataEmployees";
+import TextData from "../../utils/TextData";
 
 const EmployeeList = () => {
 	const [employees, setEmployees] = useState([]);
 
 	useEffect(() => {
 		const data = getEmployees();
-		console.log(data);
+		//console.log(data);
+
 		//setTimeOut pour que le management des datas ne commencent pas avant que la récupération des données soient faites
 		setTimeout(() => {
 			const d = data?.map((elt) => new ManageDataEmployees(elt));
-			console.log(d);
+			//console.log(d);
 			setEmployees(d);
 		}, 300);
 	}, []);
 
+	/// Fonction qui créée un tableau [{id: string , text: string, employee:{} }, {id: , text: , employee: } ....]
 	function makeText() {
 		let textArray = [];
 		employees?.forEach((employee) => {
@@ -28,7 +30,7 @@ const EmployeeList = () => {
 				employee;
 
 			textArray?.push(
-				new textData(
+				new TextData(
 					key,
 					firstname
 						.concat(",")
@@ -45,12 +47,12 @@ const EmployeeList = () => {
 				)
 			);
 		});
-		console.log(textArray);
+		//console.log(textArray);
 		return textArray;
 	}
 
 	/**
-	 * global search
+	 * global search  ===> recherche dans le champ de reccherche
 	 */
 	const [search, setSearch] = useState([]);
 	const handleSearch = (val) => {
@@ -63,6 +65,9 @@ const EmployeeList = () => {
 		console.log(f);
 		setSearch(f);
 	};
+
+	const mySelect = useRef();
+	console.log(mySelect.current.value);
 
 	return (
 		<>
@@ -93,6 +98,7 @@ const EmployeeList = () => {
 							name="numb"
 							className="mx-2 mt-1 block w-20 rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-green-500 focus:outline-none focus:ring-green-500 sm:text-sm"
 							defaultValue="10"
+							ref={mySelect}
 						>
 							<option>10</option>
 							<option>25</option>
