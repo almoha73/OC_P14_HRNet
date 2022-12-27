@@ -4,6 +4,7 @@ export default class ManageDataEmployees {
 		this.firstname = data.employees.firstname;
 		this.lastname = data.employees.lastname;
 		this.startdate = this.dateFormat(data.employees.startDate.seconds);
+		this.seconds = data.employees.startDate.seconds;
 		this.department = data.employees.department.name;
 		this.birthdate = this.dateFormat(data.employees.birthDate.seconds);
 		this.street = data.employees.street;
