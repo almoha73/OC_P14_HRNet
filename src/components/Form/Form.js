@@ -154,7 +154,7 @@ const Form = () => {
 					<Controller
 						name="state"
 						control={control}
-						defaultValue={selected.name}
+						defaultValue={"Choose a State"}
 						render={({ field: { onChange } }) => (
 							<Listbox
 								value={selected.name}
@@ -219,7 +219,7 @@ const Form = () => {
 				<Controller
 					name="department"
 					control={control}
-					defaultValue={selectedDpt.name}
+					defaultValue={"Choose a Department"}
 					render={({ field: { onChange } }) => (
 						<Listbox
 							value={selectedDpt}

@@ -3,6 +3,10 @@ import { v4 as uuidv4 } from "uuid";
 export const states = [
 	{
 		id: uuidv4(),
+		name: "Unknown",
+	},
+	{
+		id: uuidv4(),
 		name: "Alabama",
 		abbreviation: "AL",
 	},

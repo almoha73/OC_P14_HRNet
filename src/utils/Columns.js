@@ -62,7 +62,7 @@ const columns = [
 		dataIndex: "state",
 		defaultSortOrder: "descend",
 		sortDirections: ["descend", "ascend"],
-		sorter: (a, b) => a.state.localeCompare(b.state),
+		sorter: (a, b) => a.state < b.state,
 	},
 	{
 		key: "zip",
