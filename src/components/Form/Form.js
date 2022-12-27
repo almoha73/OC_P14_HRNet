@@ -8,15 +8,18 @@ import SelectList from "./utils/SelectList";
 import SelectOptions from "./utils/SelectOptions";
 import { states } from "../../utils/States";
 import { department } from "../../utils/Department";
+import { useNavigate } from "react-router";
 
 const Form = () => {
 	const { control, register, handleSubmit } = useForm();
 	const [modal, setModal] = useState(false);
 	const [selected, setSelected] = useState(states[0]);
 	const [selectedDpt, setSelectedDpt] = useState(department[0]);
+	const navigate = useNavigate();
 
 	const toggleModal = () => {
 		setModal(!modal);
+		navigate("/modal");
 	};
 
 	const onSubmit = async (data) => {
@@ -45,7 +48,7 @@ const Form = () => {
 					</label>
 
 					<input
-						{...register("firstname")}
+						{...register("firstname", { required: true })}
 						type="text"
 						name="firstname"
 						id="firstname"
@@ -61,7 +64,7 @@ const Form = () => {
 						Lastname
 					</label>
 					<input
-						{...register("lastname")}
+						{...register("lastname", { required: true })}
 						type="text"
 						name="lastname"
 						id="lastname"
@@ -123,7 +126,7 @@ const Form = () => {
 						</label>
 
 						<input
-							{...register("street")}
+							{...register("street", { required: true })}
 							type="text"
 							name="street"
 							id="street"
@@ -140,7 +143,7 @@ const Form = () => {
 						</label>
 
 						<input
-							{...register("city")}
+							{...register("city", { required: true })}
 							type="text"
 							name="city"
 							id="city"
@@ -204,7 +207,7 @@ const Form = () => {
 						</label>
 
 						<input
-							{...register("zip")}
+							{...register("zip", { required: true })}
 							type="number"
 							name="zip"
 							id="zip"
@@ -262,6 +265,7 @@ const Form = () => {
 				/>
 				<div className="w-full flex justify-center mt-8 mb-8">
 					<button
+						onSubmit={onSubmit}
 						type="submit"
 						className="inline-flex items-center rounded-md border border-transparent bg-green-700 px-6 py-3 text-base font-medium text-green-200 hover:bg-green-200 hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
 					>

@@ -18,9 +18,8 @@ const EmployeeList = () => {
 		setTimeout(() => {
 			const d = data?.map((elt) => new ManageDataEmployees(elt));
 			console.log(d);
-
 			setEmployees(d);
-		}, 500);
+		}, 1000);
 	}, []);
 
 	/// Fonction qui créée un tableau [{id: string , text: string, employee:{} }, {id: , text: , employee: } ....]
@@ -66,9 +65,6 @@ const EmployeeList = () => {
 		console.log(f);
 		setSearch(f);
 	};
-
-	const mySelect = useRef();
-	console.log(mySelect.current.value);
 
 	return (
 		<>
