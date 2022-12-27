@@ -5,7 +5,7 @@ import Navigation from "../../components/Navigation";
 import Tables from "../../components/Table/Tables";
 import { getEmployees } from "../../utils/fetchEmployees";
 import ManageDataEmployees from "../../utils/ManageDataEmployees";
-import { textData } from "../../utils/ManageDataEmployees";
+import TextData from "../../utils/TextData";
 
 const EmployeeList = () => {
 	const [employees, setEmployees] = useState([]);
@@ -13,12 +13,14 @@ const EmployeeList = () => {
 	useEffect(() => {
 		const data = getEmployees();
 		console.log(data);
+
 		//setTimeOut pour que le management des datas ne commencent pas avant que la récupération des données soient faites
 		setTimeout(() => {
 			const d = data?.map((elt) => new ManageDataEmployees(elt));
 			console.log(d);
+
 			setEmployees(d);
-		}, 300);
+		}, 500);
 	}, []);
 
 	function makeText() {
@@ -28,7 +30,7 @@ const EmployeeList = () => {
 				employee;
 
 			textArray?.push(
-				new textData(
+				new TextData(
 					key,
 					firstname
 						.concat(",")
@@ -81,7 +83,7 @@ const EmployeeList = () => {
 							A list of all the HRnet employees !
 						</p>
 					</div>
-					<div className="flex sm:w-1/4 sm:justify-center">
+					{/* <div className="flex sm:w-1/4 sm:justify-center">
 						<label
 							htmlFor="numb"
 							className="block text-sm font-medium text-gray-700 mt-3"
@@ -93,6 +95,8 @@ const EmployeeList = () => {
 							name="numb"
 							className="mx-2 mt-1 block w-20 rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-green-500 focus:outline-none focus:ring-green-500 sm:text-sm"
 							defaultValue="10"
+							ref={mySelect}
+							onChange={(e) => handleSelect(e.current.value)}
 						>
 							<option>10</option>
 							<option>25</option>
@@ -105,7 +109,7 @@ const EmployeeList = () => {
 						>
 							Entries
 						</label>
-					</div>
+					</div> */}
 					<div className="mt-4 sm:mt-0 sm:ml-16 sm:flex h-auto sm:w-1/4">
 						<label
 							htmlFor="firstname"
@@ -125,32 +129,27 @@ const EmployeeList = () => {
 						</div>
 					</div>
 				</div>
-				<div className="mt-8 flex w-full mx-auto ">
-					<div className="overflow-x-auto sm:-mx-auto ">
-						<div className="inline-block min-w-full py-2 align-middle">
-							<div className="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5">
-								{search.length > 0 ? (
-									<Tables data={search} />
-								) : (
-									<Tables data={employees} />
-								)}
-							</div>
-						</div>
-					</div>
+
+				<div className="mb-20 w-full">
+					{search.length > 0 ? (
+						<Tables data={search} />
+					) : (
+						<Tables data={employees} />
+					)}
 				</div>
 
-				<div className="text-green-700 bg-green-50 sm:flex-row sm:items-center sm:justify-center sm:gap-20 gap-4 flex flex-col justify-between items-center mx-auto mt-8 mb-12 p-2 border-t border-green-300	">
+				{/* <div className="text-green-700 bg-green-50 sm:flex-row sm:items-center sm:justify-center sm:gap-20 gap-4 flex flex-col justify-between items-center mx-auto mt-8 mb-12 p-2 border-t border-green-300	">
 					<p>
 						Showing <span>1 </span>to <span>5</span> of <span>5 </span>entries
 					</p>
-					{/* <div>
+					<div>
 						<button className="">Previous</button>
 						<button className="p-2 border border-green-700 rounded mx-2">
 							1
 						</button>
 						<button>Next</button>
-					</div> */}
-				</div>
+					</div>
+				</div> */}
 			</div>
 		</>
 	);

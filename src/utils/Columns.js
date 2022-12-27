@@ -4,6 +4,8 @@ const columns = [
 		title: "Firstname",
 		dataIndex: "firstname",
 		defaultSortOrder: "descend",
+		sortDirections: ["descend", "ascend"],
+
 		sorter: (a, b) => a.firstname.localeCompare(b.firstname),
 	},
 	{
@@ -11,6 +13,7 @@ const columns = [
 		title: "Lastname",
 		dataIndex: "lastname",
 		defaultSortOrder: "descend",
+		sortDirections: ["descend", "ascend"],
 		sorter: (a, b) => a.lastname.localeCompare(b.lastname),
 	},
 	{
@@ -18,27 +21,31 @@ const columns = [
 		title: "Start Date",
 		dataIndex: "startdate",
 		defaultSortOrder: "descend",
-		sorter: (a, b) => a.startdate - b.startdate,
+		sortDirections: ["descend", "ascend"],
+		sorter: (a, b) => a.seconds - b.seconds,
 	},
 	{
 		key: "department",
 		title: "Department",
 		dataIndex: "department",
 		defaultSortOrder: "descend",
+		sortDirections: ["descend", "ascend"],
 		sorter: (a, b) => a.department.localeCompare(b.department),
 	},
 	{
-		key: "department",
+		key: "birthdate",
 		title: "Date of Birth",
-		dataIndex: "Date of birth",
+		dataIndex: "birthdate",
 		defaultSortOrder: "descend",
-		sorter: (a, b) => a.birthdate - b.birthdate,
+		sortDirections: ["descend", "ascend"],
+		sorter: (a, b) => a.seconds - b.seconds,
 	},
 	{
 		key: "street",
 		title: "Street",
 		dataIndex: "street",
 		defaultSortOrder: "descend",
+		sortDirections: ["descend", "ascend"],
 		sorter: (a, b) => a.street.localeCompare(b.street),
 	},
 	{
@@ -46,6 +53,7 @@ const columns = [
 		title: "City",
 		dataIndex: "city",
 		defaultSortOrder: "descend",
+		sortDirections: ["descend", "ascend"],
 		sorter: (a, b) => a.city.localeCompare(b.city),
 	},
 	{
@@ -53,6 +61,7 @@ const columns = [
 		title: "State",
 		dataIndex: "state",
 		defaultSortOrder: "descend",
+		sortDirections: ["descend", "ascend"],
 		sorter: (a, b) => a.state.localeCompare(b.state),
 	},
 	{
@@ -60,6 +69,7 @@ const columns = [
 		title: "Zip Code",
 		dataIndex: "zip",
 		defaultSortOrder: "descend",
+		sortDirections: ["descend", "ascend"],
 		sorter: (a, b) => a.zip - b.zip,
 	},
 ];
