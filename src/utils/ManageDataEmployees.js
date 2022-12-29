@@ -1,19 +1,18 @@
 export default class ManageDataEmployees {
-	constructor(data) {
-		this.key = data.key;
-		this.firstname = data.employees.firstname;
-		this.lastname = data.employees.lastname;
-		this.startdate = this.dateFormat(data.employees.startDate.seconds);
-		this.seconds = data.employees.startDate.seconds;
-		this.department = data.employees.department.name;
-		this.birthdate = this.dateFormat(data.employees.birthDate.seconds);
-		this.street = data.employees.street;
-		this.city = data.employees.city;
-		this.state = data.employees.state.abbreviation;
-		this.zip = data.employees.zip;
-	}
+  constructor(data) {
+    this.key = data.key;
+    this.firstname = this.strUcFirst(data.employees.firstname);
+    this.lastname = this.strUcFirst(data.employees.lastname);
+    this.startdate = data.employees.startDate.seconds;
+    this.department = data.employees.department.name;
+    this.birthdate = data.employees.birthDate.seconds;
+    this.street = this.strUcFirst(data.employees.street);
+    this.city = this.strUcFirst(data.employees.city);
+    this.state = data.employees.state.abbreviation;
+    this.zip = data.employees.zip;
+  }
 
-	dateFormat(seconds) {
-		return new Date(seconds * 1000).toLocaleDateString("fr");
-	}
+  strUcFirst(a) {
+    return (a + "").charAt(0).toUpperCase() + a.substr(1);
+  }
 }

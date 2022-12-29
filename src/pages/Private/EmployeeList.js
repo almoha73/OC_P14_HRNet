@@ -14,6 +14,7 @@ const EmployeeList = () => {
 		const loadData = async () => {
 			const result = [];
 			const data = await getEmployees();
+			console.log(data);
 			await data.forEach((query) =>
 				result.push({ key: query.id, employees: query.data() })
 			);
@@ -48,7 +49,7 @@ const EmployeeList = () => {
 				)
 			);
 		});
-		//console.log(textArray);
+		console.log(textArray);
 		return textArray;
 	}
 
@@ -59,6 +60,7 @@ const EmployeeList = () => {
 	const handleSearch = (val) => {
 		let f = [];
 		const data = makeText();
+		console.log(data);
 		const e = data.filter((word) => word.text.includes(val.toLowerCase()));
 		for (let elt of e) {
 			f.push(elt.employee);
