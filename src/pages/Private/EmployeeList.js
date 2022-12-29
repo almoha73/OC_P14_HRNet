@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo.jpg";
 import Navigation from "../../components/Navigation";
 import Tables from "../../components/Table/Tables";
@@ -11,16 +11,17 @@ const EmployeeList = () => {
 	const [employees, setEmployees] = useState([]);
 
 	useEffect(() => {
-		const data = getEmployees();
-		console.log(data);
-
-		//setTimeOut pour que le management des datas ne commencent pas avant que la récupération des données soient faites
-		setTimeout(() => {
-			const d = data?.map((elt) => new ManageDataEmployees(elt));
-			console.log(d);
-			setEmployees(d);
-		}, 1000);
-	}, []);
+		const loadData = async () => {
+			const result = [];
+			const data = await getEmployees();
+			await data.forEach((query) =>
+				result.push({ key: query.id, employees: query.data() })
+			);
+			const resultData = result.map((doc) => new ManageDataEmployees(doc));
+			setEmployees(resultData);
+		};
+		loadData();
+	}, [employees.length]);
 
 	/// Fonction qui créée un tableau [{id: string , text: string, employee:{} }, {id: , text: , employee: } ....]
 	function makeText() {
