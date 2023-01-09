@@ -6,10 +6,10 @@ import { Navigate } from "react-router-dom";
 const Private = () => {
 	const { currentUser } = useContext(AuthContext);
 	if (!currentUser) {
-		return <Navigate to="/" replace />;
+		return <Navigate to="/" />;
+	} else {
+		return <Outlet />;
 	}
-
-	return <Outlet />;
 };
 
 export default Private;

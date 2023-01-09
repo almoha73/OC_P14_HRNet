@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
-
+console.log(auth);
 export const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
@@ -27,6 +27,8 @@ export function AuthContextProvider({ children }) {
 		signIn,
 		currentUser,
 	};
+
+	console.log(value);
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
