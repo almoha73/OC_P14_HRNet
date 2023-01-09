@@ -5,8 +5,8 @@ console.log(auth);
 export const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
-	const signIn = (email, pwd) => {
-		signInWithEmailAndPassword(auth, email, pwd);
+	const signIn = async (email, pwd) => {
+		await signInWithEmailAndPassword(auth, email, pwd);
 	};
 	const [currentUser, setCurrentUser] = useState();
 	const [loadingData, setLoadingData] = useState(true);

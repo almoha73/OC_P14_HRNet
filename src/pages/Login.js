@@ -5,13 +5,13 @@ import logo from "../assets/logo.jpg";
 import { useForm } from "react-hook-form";
 
 export default function Login() {
-	const { signIn, currentUser } = useContext(AuthContext);
+	const { signIn } = useContext(AuthContext);
 	const navigate = useNavigate();
 	const { register, handleSubmit } = useForm();
-	console.log(currentUser);
+
 	const onSubmit = async (data) => {
 		try {
-			await signIn(data.email, data.password);
+			await signIn(data?.email, data?.password);
 			navigate("/private/home");
 		} catch (error) {
 			console.log(error);
