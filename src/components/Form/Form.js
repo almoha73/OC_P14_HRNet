@@ -8,26 +8,20 @@ import SelectList from "./utils/SelectList";
 import SelectOptions from "./utils/SelectOptions";
 import { states } from "../../utils/States";
 import { department } from "../../utils/Department";
-import { useNavigate } from "react-router";
+import Modal from "../Modal";
 
 const Form = () => {
 	const { control, register, handleSubmit } = useForm();
-	const [modal, setModal] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 	const [selected, setSelected] = useState(states[0]);
 	const [selectedDpt, setSelectedDpt] = useState(department[0]);
-	const navigate = useNavigate();
-
-	const toggleModal = () => {
-		setModal(!modal);
-		navigate("/modal");
-	};
 
 	const onSubmit = async (data) => {
 		console.log(data);
 		try {
 			const docRef = await addDoc(collection(db, "employees"), data);
 			console.log("Document written with ID: ", docRef.id);
-			toggleModal();
+			setIsOpen(true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -35,6 +29,7 @@ const Form = () => {
 
 	return (
 		<>
+			{isOpen && <Modal />}
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="w-4/5 sm:w-2/5 mx-auto mt-8"
@@ -265,7 +260,6 @@ const Form = () => {
 				/>
 				<div className="w-full flex justify-center mt-8 mb-8">
 					<button
-						onSubmit={onSubmit}
 						type="submit"
 						className="inline-flex items-center rounded-md border border-transparent bg-green-700 px-6 py-3 text-base font-medium text-green-200 hover:bg-green-200 hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
 					>
