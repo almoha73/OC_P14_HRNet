@@ -1,7 +1,10 @@
 import React, { createContext, useState, useEffect } from "react";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
+import Spinner from "../../components/Spinner";
+
 console.log(auth);
+
 export const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
@@ -20,7 +23,7 @@ export function AuthContextProvider({ children }) {
 	}, []);
 
 	if (loadingData) {
-		return <>Loading...</>;
+		return <Spinner />;
 	}
 
 	const value = {
