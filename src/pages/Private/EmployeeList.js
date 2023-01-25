@@ -6,6 +6,7 @@ import Tables from "../../components/Table/Tables";
 import { getEmployees } from "../../utils/fetchEmployees";
 import ManageDataEmployees from "../../utils/ManageDataEmployees";
 import TextData from "../../utils/TextData";
+//import { employees } from "../../utils/MockedData";
 
 const EmployeeList = () => {
 	const [employees, setEmployees] = useState([]);

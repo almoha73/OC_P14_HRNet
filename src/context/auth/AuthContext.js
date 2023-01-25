@@ -23,7 +23,8 @@ export function AuthContextProvider({ children }) {
 	}, []);
 
 	if (loadingData) {
-		return <Spinner />;
+		return <>Loading ...</>;
+		//return <Spinner />;
 	}
 
 	const value = {
