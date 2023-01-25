@@ -8,7 +8,7 @@ const Home = () => {
 		<>
 			<div className="w-full h-screen flex flex-col justify-start gap-12 items-center">
 				<Navigation />
-				<main className="w-11/12 lg:h-[500px] flex-1 sm:flex lg:flex-row  flex flex-col  sm:justify-center items-center sm:border sm:border-green-700 sm:rounded-lg ">
+				<main className="w-11/12 lg:h-[500px] flex-1 gap-4 sm:flex lg:flex-row  flex flex-col  sm:justify-center items-center sm:border sm:border-green-700 sm:rounded-lg ">
 					<div className="mx-auto  sm:pt-16 sm:pb-20 text-center lg:py-48 lg:text-left">
 						<div className="px-4 sm:px-8 lg:w-11/12 xl:pr-16">
 							<h1 className="text-xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
