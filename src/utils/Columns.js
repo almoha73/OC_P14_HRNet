@@ -22,7 +22,7 @@ const columns = [
 		defaultSortOrder: "descend",
 		sortDirections: ["descend", "ascend"],
 		sorter: (a, b) => new Date(a.startdate) - new Date(b.startdate),
-		render: ((date) => dateFormat(date)) 
+		render: (date) => dateFormat(date),
 	},
 	{
 		key: "department",
@@ -31,7 +31,6 @@ const columns = [
 		defaultSortOrder: "descend",
 		sortDirections: ["descend", "ascend"],
 		sorter: (a, b) => a.department.localeCompare(b.department),
-
 	},
 	{
 		key: "birthdate",
@@ -40,7 +39,7 @@ const columns = [
 		defaultSortOrder: "descend",
 		sortDirections: ["descend", "ascend"],
 		sorter: (a, b) => new Date(a.birthdate) - new Date(b.birthdate),
-		render: ((date) => dateFormat(date)) 
+		render: (date) => dateFormat(date),
 	},
 	{
 		key: "street",
@@ -64,7 +63,7 @@ const columns = [
 		dataIndex: "state",
 		defaultSortOrder: "descend",
 		sortDirections: ["descend", "ascend"],
-		sorter: (a, b) => a.state < b.state,
+		sorter: (a, b) => a.state.localeCompare(b.state),
 	},
 	{
 		key: "zip",
@@ -77,9 +76,7 @@ const columns = [
 ];
 
 function dateFormat(seconds) {
-    return new Date(seconds * 1000).toLocaleDateString("fr");
-  }
+	return new Date(seconds * 1000).toLocaleDateString("fr");
+}
 
 export default columns;
-
-
