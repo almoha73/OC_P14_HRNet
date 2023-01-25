@@ -10,15 +10,11 @@ For the test of this version the login: `hrnetadmin@test.fr` password: `azerty`
 
 ## DEPENDENCIES USED
 
-To change the JQuerry plugins and React components I used :
+To change the JQuerry plugins in React components I used :
 - react-datepicker for both date inputs
 - antd for the array
 - @headlessui/react and @heroicons/react/20/solid for the inputs with options
 -  a custom modal whose code source you can find [here](https://github.com/almoha73/modal-agnes-p14) and the package on npm [here](https://www.npmjs.com/package/modalagnes73).
-
-
-
-
 
 ## To launch the application
 ### `npm start`
