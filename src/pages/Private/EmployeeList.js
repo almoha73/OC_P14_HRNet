@@ -6,24 +6,24 @@ import Tables from "../../components/Table/Tables";
 import { getEmployees } from "../../utils/fetchEmployees";
 import ManageDataEmployees from "../../utils/ManageDataEmployees";
 import TextData from "../../utils/TextData";
-import { employees } from "../../utils/MockedData";
+//import { employees } from "../../utils/MockedData";
 
 const EmployeeList = () => {
-	// const [employees, setEmployees] = useState([]);
+	const [employees, setEmployees] = useState([]);
 
-	// useEffect(() => {
-	// 	const loadData = async () => {
-	// 		const result = [];
-	// 		const data = await getEmployees();
-	// 		console.log(data);
-	// 		await data.forEach((query) =>
-	// 			result.push({ key: query.id, employees: query.data() })
-	// 		);
-	// 		const resultData = result.map((doc) => new ManageDataEmployees(doc));
-	// 		setEmployees(resultData);
-	// 	};
-	// 	loadData();
-	// }, [employees.length]);
+	useEffect(() => {
+		const loadData = async () => {
+			const result = [];
+			const data = await getEmployees();
+			console.log(data);
+			await data.forEach((query) =>
+				result.push({ key: query.id, employees: query.data() })
+			);
+			const resultData = result.map((doc) => new ManageDataEmployees(doc));
+			setEmployees(resultData);
+		};
+		loadData();
+	}, [employees.length]);
 
 	/// Fonction qui créée un tableau [{id: string , text: string, employee:{} }, {id: , text: , employee: } ....]
 	function makeText() {
