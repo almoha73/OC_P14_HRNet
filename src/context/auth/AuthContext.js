@@ -23,7 +23,6 @@ export function AuthContextProvider({ children }) {
 	}, []);
 
 	if (loadingData) {
-		return <>Loading ...</>;
 		//return <Spinner />;
 	}
 
