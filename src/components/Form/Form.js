@@ -10,8 +10,13 @@ import Modal from "modalagnes73";
 import InputList from "./utils/InputList";
 
 const Form = () => {
-  
-  const { control, register, handleSubmit, reset } = useForm();
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(states[0]);
   const [selectedDpt, setSelectedDpt] = useState(department[0]);
@@ -23,9 +28,8 @@ const Form = () => {
       window.scrollTo(0, 0);
       setIsOpen(true);
       reset();
-      setSelected(states[0])
-      setSelectedDpt(department[0])
-
+      setSelected(states[0]);
+      setSelectedDpt(department[0]);
     } catch (error) {
       console.log(error);
     }
@@ -54,6 +58,7 @@ const Form = () => {
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
             placeholder="Firstname"
           />
+          {errors.firstName?.type === 'required' && <p role="alert">First name is required</p>}
         </div>
         <div className="mt-8">
           <label
@@ -153,12 +158,16 @@ const Form = () => {
           <Controller
             name="state"
             control={control}
-            defaultValue={`Choose a state`}
+            defaultValue={states[0]}
             render={({ field: { onChange } }) => (
-              <InputList array={states} value={selected} onChange={(e) => {
-                onChange(e);
-                setSelected(e);
-              }} />
+              <InputList
+                array={states}
+                value={selected}
+                onChange={(e) => {
+                  onChange(e);
+                  setSelected(e);
+                }}
+              />
             )}
           ></Controller>
           <div className="mt-8 w-11/12 sm:w-1/2 mx-auto mb-8">
@@ -182,12 +191,16 @@ const Form = () => {
         <Controller
           name="department"
           control={control}
-          defaultValue={`Choose a department`}
+          defaultValue={department[0]}
           render={({ field: { onChange } }) => (
-            <InputList array={department} value={selectedDpt} onChange={(e) => {
-              onChange(e);
-              setSelectedDpt(e);
-            }}/>
+            <InputList
+              array={department}
+              value={selectedDpt}
+              onChange={(e) => {
+                onChange(e);
+                setSelectedDpt(e);
+              }}
+            />
           )}
         ></Controller>
         <div className="w-full flex justify-center mt-8 mb-8">

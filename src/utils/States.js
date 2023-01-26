@@ -4,6 +4,7 @@ export const states = [
 	{
 		id: uuidv4(),
 		name: "Unknown",
+		abbreviation: "??",
 	},
 	{
 		id: uuidv4(),
