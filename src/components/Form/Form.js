@@ -3,19 +3,18 @@ import { useForm, Controller } from "react-hook-form";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import InputDate from "./utils/InputDate";
-import { Listbox, Transition } from "@headlessui/react";
-import SelectList from "./utils/SelectList";
-import SelectOptions from "./utils/SelectOptions";
+
 import { states } from "../../utils/States";
 import { department } from "../../utils/Department";
 import Modal from "modalagnes73";
+import InputList from "./utils/InputList";
 
 const Form = () => {
-  const { control, register, handleSubmit } = useForm();
+  
+  const { control, register, handleSubmit, reset } = useForm();
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(states[0]);
   const [selectedDpt, setSelectedDpt] = useState(department[0]);
-
   const onSubmit = async (data) => {
     console.log(data);
     try {
@@ -23,6 +22,10 @@ const Form = () => {
       console.log("Document written with ID: ", docRef.id);
       window.scrollTo(0, 0);
       setIsOpen(true);
+      reset();
+      setSelected(states[0])
+      setSelectedDpt(department[0])
+
     } catch (error) {
       console.log(error);
     }
@@ -111,7 +114,7 @@ const Form = () => {
             )}
           />
         </div>
-        <div className="adress border mt-8 bg-green-200">
+        <div className="adress border mt-8 bg-green-200 mb-8">
           <h1 className="text-green-600 text-center mt-8">Address</h1>
           <div className="mt-8 w-11/12 sm:w-1/2 mx-auto">
             <label
@@ -130,7 +133,7 @@ const Form = () => {
               placeholder="street"
             />
           </div>
-          <div className="mt-8 w-11/12 sm:w-1/2 mx-auto">
+          <div className="mt-8 w-11/12 sm:w-1/2 mx-auto mb-8">
             <label
               htmlFor="city"
               className="block text-sm font-medium text-gray-700"
@@ -150,50 +153,14 @@ const Form = () => {
           <Controller
             name="state"
             control={control}
-            defaultValue={"Choose a State"}
+            defaultValue={`Choose a state`}
             render={({ field: { onChange } }) => (
-              <Listbox
-                value={selected.name}
-                onChange={(e) => {
-                  onChange(e);
-                  setSelected(e);
-                }}
-              >
-                {({ open }) => (
-                  <div className="w-11/12 sm:w-1/2 mx-auto">
-                    <Listbox.Label className="block text-sm font-medium text-gray-700 mt-8">
-                      State
-                    </Listbox.Label>
-                    <div className="relative mt-1">
-                      <SelectList
-                        options={
-                          <>
-                            {states && (
-                              <span className="block truncate">
-                                {selected.name}
-                              </span>
-                            )}
-                          </>
-                        }
-                      />
-
-                      <Transition
-                        show={open}
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                          <SelectOptions option={states} />
-                        </Listbox.Options>
-                      </Transition>
-                    </div>
-                  </div>
-                )}
-              </Listbox>
+              <InputList array={states} value={selected} onChange={(e) => {
+                onChange(e);
+                setSelected(e);
+              }} />
             )}
-          />
+          ></Controller>
           <div className="mt-8 w-11/12 sm:w-1/2 mx-auto mb-8">
             <label
               htmlFor="zip"
@@ -215,50 +182,14 @@ const Form = () => {
         <Controller
           name="department"
           control={control}
-          defaultValue={"Choose a Department"}
+          defaultValue={`Choose a department`}
           render={({ field: { onChange } }) => (
-            <Listbox
-              value={selectedDpt}
-              onChange={(e) => {
-                onChange(e);
-                setSelectedDpt(e);
-              }}
-            >
-              {({ open }) => (
-                <div className="w-full mt-8">
-                  <Listbox.Label className="block text-sm font-medium text-gray-700">
-                    Department
-                  </Listbox.Label>
-                  <div className="relative mt-1">
-                    <SelectList
-                      options={
-                        <>
-                          {department && (
-                            <span className="block truncate">
-                              {selectedDpt.name}
-                            </span>
-                          )}
-                        </>
-                      }
-                    />
-
-                    <Transition
-                      show={open}
-                      as={Fragment}
-                      leave="transition ease-in duration-100"
-                      leaveFrom="opacity-100"
-                      leaveTo="opacity-0"
-                    >
-                      <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                        <SelectOptions option={department} />
-                      </Listbox.Options>
-                    </Transition>
-                  </div>
-                </div>
-              )}
-            </Listbox>
+            <InputList array={department} value={selectedDpt} onChange={(e) => {
+              onChange(e);
+              setSelectedDpt(e);
+            }}/>
           )}
-        />
+        ></Controller>
         <div className="w-full flex justify-center mt-8 mb-8">
           <button
             type="submit"

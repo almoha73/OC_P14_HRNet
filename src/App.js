@@ -7,30 +7,28 @@ import Login from "./pages/Login";
 import Private from "./pages/Private/Private";
 import Error from "./pages/Error";
 
-// import Modal from "./components/Modal";
-
 function App() {
-	return (
-		<div className="App">
-			<Routes>
-				<Route path="/" element={<Login />}></Route>
-				<Route element={<Private />}>
-					<Route path="/private/home" element={<Home />}></Route>
-					<Route
-						path="/private/create-employee"
-						element={<CreateEmployee />}
-					></Route>
+  return (
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Login />}></Route>
+        <Route element={<Private />}>
+          <Route path="/private/home" element={<Home />}></Route>
+          <Route
+            path="/private/create-employee"
+            element={<CreateEmployee />}
+          ></Route>
 
-					<Route
-						path="/private/employee-list"
-						element={<EmployeeList />}
-					></Route>
-				</Route>
-				{/* <Route path="/modal" element={<Modal />}></Route> */}
-				<Route path="*" element={<Error />}></Route>
-			</Routes>
-		</div>
-	);
+          <Route
+            path="/private/employee-list"
+            element={<EmployeeList />}
+          ></Route>
+        </Route>
+        {/* <Route path="/modal" element={<Modal />}></Route> */}
+        <Route path="*" element={<Error />}></Route>
+      </Routes>
+    </div>
+  );
 }
 
 export default App;

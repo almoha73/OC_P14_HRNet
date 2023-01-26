@@ -1,18 +1,11 @@
 import React from "react";
-//import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import logo from "../../assets/logo.jpg";
 import Navigation from "../../components/Navigation";
-//import Modal from "../../components/Modal";
 import Form from "../../components/Form/Form";
 
 const CreateEmployee = () => {
-	// const [modal, setModal] = useState(false);
-
-	// if (modal) {
-	// 	return <Modal />;
-	// } else {
-
+	
 	return (
 		<>
 			<Navigation />
@@ -29,6 +22,6 @@ const CreateEmployee = () => {
 		</>
 	);
 };
-// };
+
 
 export default CreateEmployee;
