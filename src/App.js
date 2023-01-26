@@ -1,12 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router";
 import Spinner from "./components/Spinner";
-//import CreateEmployee from "./pages/Private/CreateEmployee";
-//import EmployeeList from "./pages/Private/EmployeeList";
-// import Home from "./pages/Private/Home";
-// import Login from "./pages/Login";
-//import Private from "./pages/Private/Private";
-//import Error from "./pages/Error";
 
 const Home = lazy(() => import("./pages/Private/Home"));
 const Login = lazy(() => import("./pages/Login"));
