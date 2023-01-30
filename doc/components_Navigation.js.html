@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Navigation.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Navigation.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+Navigation Component
+@module Navigation
+@param {none}
+@returns {JSX.Element}
+@description Renders a navigation menu with links to different pages. The menu can be toggled on small screens. The user can also log out from the menu.
+*/
+import React from "react";
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { NavLink } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
+
+export default function Navigation() {
+  const navigate = useNavigate();
+
+  const navigation = [
+    { name: "Home", href: "/private/home" },
+    { name: "Create Employee", href: "/private/create-employee" },
+    { name: "View Current Employees", href: "/private/employee-list" },
+  ];
+
+  /**
+Logs the user out and redirects to the homepage.
+@async
+@function logOut
+@returns {void}
+*/
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch {
+      alert(
+        "For some reaons we can't deconnect, please check tour internet connexion and retry"
+      );
+    }
+  };
+  return (
+    &lt;Disclosure
+      as="nav"
+      className="w-full flex flex-col justify-center items-center"
+    >
+      {({ open }) => (
+        &lt;>
+          &lt;div className="w-11/12 flex ">
+            &lt;div className="relative flex sm:w-full h-16 items-center justify-between">
+              &lt;div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                {/* Mobile menu button*/}
+                &lt;Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-green-700 hover:bg-green-200 hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-700 ">
+                  &lt;span className="sr-only">Open main menu&lt;/span>
+                  {open ? (
+                    &lt;XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    &lt;Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                &lt;/Disclosure.Button>
+              &lt;/div>
+              &lt;div className="flex  sm:w-full items-center justify-center sm:items-center sm:justify-center">
+                &lt;div className="hidden sm:block sm:flex sm:justify-between w-full">
+                  &lt;div className="flex space-x-8">
+                    {navigation.map((item) => (
+                      &lt;NavLink
+                        key={item.name}
+                        to={item.href}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "bg-green-200 text-green-700 sm:text-lg py-1 px-2 rounded"
+                            : "text-green-700 hover:bg-green-200 hover:green-700 sm:text-lg py-1 px-2 rounded"
+                        }
+                        aria-current={item.current ? "page" : undefined}
+                        end
+                      >
+                        {item.name}
+                      &lt;/NavLink>
+                    ))}
+                  &lt;/div>
+                  &lt;button
+                    onClick={logOut}
+                    className="border px-3  rounded bg-green-700 text-green-200 hover:bg-green-200 hover:text-green-700"
+                  >
+                    SignOut
+                  &lt;/button>
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
+          &lt;/div>
+
+          &lt;Disclosure.Panel className="sm:hidden ">
+            &lt;div className="space-y-3 px-2 pt-2 pb-3 flex flex-col">
+              {navigation.map((item) => (
+                &lt;Disclosure.Button key={item.name}>
+                  &lt;NavLink
+                    to={item.href}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-green-200 text-green-500 sm:text-xl lg:text-2xl block p-2 w-full  mx-auto"
+                        : "text-green-500 hover:bg-green-200 hover:green-700 sm:text-xl lg:text-2xl p-2  mx-auto block"
+                    }
+                    aria-current={item.current ? "page" : undefined}
+                    end
+                  >
+                    {item.name}
+                  &lt;/NavLink>
+                &lt;/Disclosure.Button>
+              ))}
+            &lt;/div>
+            &lt;button
+              onClick={logOut}
+              className="mx-auto block border px-3  rounded bg-green-700 text-green-200 hover:bg-green-200 hover:text-green-700"
+            >
+              SignOut
+            &lt;/button>
+          &lt;/Disclosure.Panel>
+        &lt;/>
+      )}
+    &lt;/Disclosure>
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-EmployeeList.html">EmployeeList</a></li><li><a href="module-Error.html">Error</a></li><li><a href="module-Form.html">Form</a></li><li><a href="module-Navigation.html">Navigation</a></li><li><a href="module-Spinner.html">Spinner</a></li><li><a href="module-Tables.html">Tables</a></li><li><a href="module-firebase.html">firebase</a></li><li><a href="module-index.html">index</a></li><li><a href="pages_Private_CreateEmployee.module_js.html">pages/Private/CreateEmployee.js</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AuthContext">AuthContext</a></li><li><a href="global.html#AuthContextProvider">AuthContextProvider</a></li><li><a href="global.html#signIn">signIn</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Jan 30 2023 09:58:36 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

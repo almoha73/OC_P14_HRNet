@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Form/Form.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Form/Form.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+@file Form component for employee information
+@author almoha
+@module Form
+*/
+
+import React, { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import InputDate from "./utils/InputDate";
+import { states } from "../../utils/States";
+import { department } from "../../utils/Department";
+import Modal from "modalagnes73";
+import InputList from "./utils/InputList";
+
+/**
+Renders a form to collect employee information and submits to Firebase Firestore.
+Displays a modal component upon successful submission.
+@returns {JSX.Element} Form component
+*/
+const Form = () => {
+  /** 
+React Hook for form management
+@type {Object}
+*/
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  /**
+State hook to manage modal component open/close
+@type {Boolean}
+*/
+  const [isOpen, setIsOpen] = useState(false);
+
+  /**
+State hook to manage selected state value
+@type {String}
+*/
+  const [selected, setSelected] = useState(states[0]);
+
+  /**
+State hook to manage selected department value
+@type {String}
+*/
+  const [selectedDpt, setSelectedDpt] = useState(department[0]);
+
+  /**
+Handles form submission
+Adds employee data to Firebase Firestore
+Resets form, closes modal, and resets selected state and department values
+@param {Object} data - Employee form data
+*/
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      const docRef = await addDoc(collection(db, "employees"), data);
+      console.log("Document written with ID: ", docRef.id);
+      window.scrollTo(0, 0);
+      setIsOpen(true);
+      reset();
+      setSelected(states[0]);
+      setSelectedDpt(department[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    &lt;>
+      {isOpen &amp;&amp; &lt;Modal setIsOpen={setIsOpen} overlayColor="green-500" />}
+      &lt;form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-4/5 sm:w-2/5 mx-auto mt-8"
+      >
+        &lt;div>
+          &lt;label
+            htmlFor="firstname"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Firstname
+          &lt;/label>
+
+          &lt;input
+            {...register("firstname", { required: true })}
+            type="text"
+            name="firstname"
+            id="firstname"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+            placeholder="Firstname"
+          />
+          {errors.firstName?.type === "required" &amp;&amp; (
+            &lt;p role="alert">First name is required&lt;/p>
+          )}
+        &lt;/div>
+        &lt;div className="mt-8">
+          &lt;label
+            htmlFor="lastname"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Lastname
+          &lt;/label>
+          &lt;input
+            {...register("lastname", { required: true })}
+            type="text"
+            name="lastname"
+            id="lastname"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+            placeholder="Lastname"
+          />
+        &lt;/div>
+        &lt;div className="mt-8">
+          &lt;label
+            htmlFor="birthDate"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Date of Birth
+          &lt;/label>
+          &lt;Controller
+            name="birthDate"
+            control={control}
+            render={({ field }) => (
+              &lt;>
+                &lt;InputDate
+                  text="Select the date of birth"
+                  value={field.value}
+                  fn={(date) => field.onChange(date)}
+                />
+              &lt;/>
+            )}
+          />
+        &lt;/div>
+        &lt;div className="mt-8 ">
+          &lt;label
+            htmlFor="startdate"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Start Date
+          &lt;/label>
+
+          &lt;Controller
+            name="startDate"
+            control={control}
+            render={({ field }) => (
+              &lt;>
+                &lt;InputDate
+                  text="Select the start date"
+                  value={field.value}
+                  fn={(date) => field.onChange(date)}
+                />
+              &lt;/>
+            )}
+          />
+        &lt;/div>
+        &lt;div className="adress border mt-8 bg-green-200 mb-8">
+          &lt;h1 className="text-green-600 text-center mt-8">Address&lt;/h1>
+          &lt;div className="mt-8 w-11/12 sm:w-1/2 mx-auto">
+            &lt;label
+              htmlFor="street"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Street
+            &lt;/label>
+
+            &lt;input
+              {...register("street", { required: true })}
+              type="text"
+              name="street"
+              id="street"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+              placeholder="street"
+            />
+          &lt;/div>
+          &lt;div className="mt-8 w-11/12 sm:w-1/2 mx-auto mb-8">
+            &lt;label
+              htmlFor="city"
+              className="block text-sm font-medium text-gray-700"
+            >
+              City
+            &lt;/label>
+
+            &lt;input
+              {...register("city", { required: true })}
+              type="text"
+              name="city"
+              id="city"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+              placeholder="city"
+            />
+          &lt;/div>
+          &lt;Controller
+            name="state"
+            control={control}
+            defaultValue={states[0]}
+            render={({ field: { onChange } }) => (
+              &lt;InputList
+                array={states}
+                value={selected}
+                onChange={(e) => {
+                  onChange(e);
+                  setSelected(e);
+                }}
+              />
+            )}
+          >&lt;/Controller>
+          &lt;div className="mt-8 w-11/12 sm:w-1/2 mx-auto mb-8">
+            &lt;label
+              htmlFor="zip"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Zip Code
+            &lt;/label>
+
+            &lt;input
+              {...register("zip", { required: true })}
+              type="number"
+              name="zip"
+              id="zip"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+              placeholder="zip"
+            />
+          &lt;/div>
+        &lt;/div>
+        &lt;Controller
+          name="department"
+          control={control}
+          defaultValue={department[0]}
+          render={({ field: { onChange } }) => (
+            &lt;InputList
+              array={department}
+              value={selectedDpt}
+              onChange={(e) => {
+                onChange(e);
+                setSelectedDpt(e);
+              }}
+            />
+          )}
+        >&lt;/Controller>
+        &lt;div className="w-full flex justify-center mt-8 mb-8">
+          &lt;button
+            type="submit"
+            className="inline-flex items-center rounded-md border border-transparent bg-green-700 px-6 py-3 text-base font-medium text-green-200 hover:bg-green-200 hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+          >
+            Save
+          &lt;/button>
+        &lt;/div>
+      &lt;/form>
+    &lt;/>
+  );
+};
+
+export default Form;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-EmployeeList.html">EmployeeList</a></li><li><a href="module-Error.html">Error</a></li><li><a href="module-Form.html">Form</a></li><li><a href="module-Navigation.html">Navigation</a></li><li><a href="module-Spinner.html">Spinner</a></li><li><a href="module-Tables.html">Tables</a></li><li><a href="module-firebase.html">firebase</a></li><li><a href="module-index.html">index</a></li><li><a href="pages_Private_CreateEmployee.module_js.html">pages/Private/CreateEmployee.js</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AuthContext">AuthContext</a></li><li><a href="global.html#AuthContextProvider">AuthContextProvider</a></li><li><a href="global.html#signIn">signIn</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Jan 30 2023 09:58:36 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

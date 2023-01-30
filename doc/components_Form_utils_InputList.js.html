@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Form/utils/InputList.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Form/utils/InputList.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+InputList is a functional component that creates a dropdown list for selecting
+either the department or the state. The value and onChange props are passed to the
+Listbox component from the @headlessui/react library to control the selected value
+and handle change events.
+@param {Object} array - The data to be displayed in the dropdown list, either the
+departments or states.
+@param {Object} value - The selected value in the dropdown list.
+@param {function} onChange - A callback function to handle change events.
+@returns {JSX.Element} A dropdown list with options to select the department or state.
+*/
+
+import { Fragment } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { department } from "../../../utils/Department";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+/**
+This is a functional component that represents an InputList.
+
+@param {Object} props - The properties passed to the component
+@param {Array} props.array - The data to be displayed in the list
+@param {Object} props.value - The selected value from the list
+@param {Function} props.onChange - A callback function that is called when a new value is selected from the list
+@returns {JSX.Element} A dropdown list using the Listbox component from the headlessui library.
+*/
+export default function InputList({ array, value, onChange }) {
+  return (
+    &lt;Listbox value={value} onChange={onChange}>
+      {({ open }) => (
+        &lt;>
+          &lt;div
+            className={classNames(
+              array === department
+                ? "w-full sm:w-full mx-auto"
+                : "w-11/12 sm:w-1/2 mx-auto"
+            )}
+          >
+            &lt;Listbox.Label className="block text-sm font-medium text-gray-700">
+              {array === department ? "Department" : "State"}
+            &lt;/Listbox.Label>
+            &lt;div className="relative mt-1">
+              &lt;Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500 sm:text-sm">
+                &lt;span className="block truncate">{value.name}&lt;/span>
+                &lt;span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                  &lt;ChevronUpDownIcon
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                &lt;/span>
+              &lt;/Listbox.Button>
+
+              &lt;Transition
+                show={open}
+                as={Fragment}
+                leave="transition ease-in duration-100"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                &lt;Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                  {array.map((elt) => (
+                    &lt;Listbox.Option
+                      key={elt.id}
+                      className={({ active }) =>
+                        classNames(
+                          active ? "text-white bg-green-600" : "text-gray-900",
+                          "relative cursor-default select-none py-2 pl-3 pr-9"
+                        )
+                      }
+                      value={elt}
+                    >
+                      {({ value, active }) => (
+                        &lt;>
+                          &lt;span
+                            className={classNames(
+                              value ? "font-semibold" : "font-normal",
+                              "block truncate"
+                            )}
+                          >
+                            {elt.name}
+                          &lt;/span>
+
+                          {value ? (
+                            &lt;span
+                              className={classNames(
+                                active ? "text-white" : "text-green-600",
+                                "absolute inset-y-0 right-0 flex items-center pr-4"
+                              )}
+                            >
+                              &lt;CheckIcon
+                                className="h-5 w-5"
+                                aria-hidden="true"
+                              />
+                            &lt;/span>
+                          ) : null}
+                        &lt;/>
+                      )}
+                    &lt;/Listbox.Option>
+                  ))}
+                &lt;/Listbox.Options>
+              &lt;/Transition>
+            &lt;/div>
+          &lt;/div>
+        &lt;/>
+      )}
+    &lt;/Listbox>
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-EmployeeList.html">EmployeeList</a></li><li><a href="module-Error.html">Error</a></li><li><a href="module-Form.html">Form</a></li><li><a href="module-Navigation.html">Navigation</a></li><li><a href="module-Spinner.html">Spinner</a></li><li><a href="module-Tables.html">Tables</a></li><li><a href="module-firebase.html">firebase</a></li><li><a href="module-index.html">index</a></li><li><a href="pages_Private_CreateEmployee.module_js.html">pages/Private/CreateEmployee.js</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AuthContext">AuthContext</a></li><li><a href="global.html#AuthContextProvider">AuthContextProvider</a></li><li><a href="global.html#signIn">signIn</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Jan 30 2023 09:58:36 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

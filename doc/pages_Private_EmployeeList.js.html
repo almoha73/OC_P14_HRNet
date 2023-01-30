@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/Private/EmployeeList.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/Private/EmployeeList.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable jsx-a11y/anchor-is-valid */
+
+/**
+
+EmployeeList component
+@module EmployeeList
+@extends React
+@requires react
+@requires react/hooks/useState
+@requires react/hooks/useEffect
+@requires ../../components/Navigation
+@requires ../../components/Table/Tables
+@requires ../../utils/fetchEmployees
+@requires ../../utils/ManageDataEmployees
+@requires ../../utils/TextData
+*/
+import React, { useState, useEffect } from "react";
+import logo from "../../assets/logo.jpg";
+import Navigation from "../../components/Navigation";
+import Tables from "../../components/Table/Tables";
+import { getEmployees } from "../../utils/fetchEmployees";
+import ManageDataEmployees from "../../utils/ManageDataEmployees";
+import TextData from "../../utils/TextData";
+
+/**
+EmployeeList - displays list of employees and implements search functionality
+@function
+@returns {JSX.Element} - rendered component
+*/
+const EmployeeList = () => {
+  const [employees, setEmployees] = useState([]);
+
+  useEffect(() => {
+    /**
+     * Loads employee data from database
+     * @function
+     * @async
+     */
+    const loadData = async () => {
+      const result = [];
+      const data = await getEmployees();
+      console.log(data);
+      await data.forEach((query) =>
+        result.push({ key: query.id, employees: query.data() })
+      );
+      const resultData = result.map((doc) => new ManageDataEmployees(doc));
+      setEmployees(resultData);
+    };
+    loadData();
+  }, [employees.length]);
+
+  /**
+Creates array of TextData objects
+@function
+@returns {Array.&lt;TextData>} - array of TextData objects
+*/
+  /// Fonction qui créée un tableau [{id: string , text: string, employee:{} }, {id: , text: , employee: } ....]
+  function makeText() {
+    let textArray = [];
+    employees?.forEach((employee) => {
+      const { key, firstname, lastname, department, street, city, state } =
+        employee;
+
+      textArray?.push(
+        new TextData(
+          key,
+          firstname
+            .concat(",")
+            .concat(lastname)
+            .concat(",")
+            .concat(department)
+            .concat(",")
+            .concat(street)
+            .concat(",")
+            .concat(city)
+            .concat(",")
+            .concat(state),
+          employee
+        )
+      );
+    });
+    console.log(textArray);
+    return textArray;
+  }
+
+  /**
+State for search results
+@type {Array.&lt;ManageDataEmployees>}
+*/
+  const [search, setSearch] = useState([]);
+
+  /**
+Handles search input
+@function
+@param {string} val - search input value
+*/
+  const handleSearch = (val) => {
+    let f = [];
+    const data = makeText();
+    console.log(data);
+    const e = data.filter((word) => word.text.includes(val.toLowerCase()));
+    for (let elt of e) {
+      f.push(elt.employee);
+    }
+    console.log(f);
+    setSearch(f);
+  };
+
+  return (
+    &lt;>
+      &lt;Navigation />
+      &lt;img className="mx-auto mt-8 w-auto h-auto" src={logo} alt="logo" />
+      &lt;h1 className="text-center text-2xl sm:text-5xl sm:mt-8 sm:mb-16 text-green-700 font-bold">
+        Current Employees
+      &lt;/h1>
+      &lt;div className="mx-auto w-11/12">
+        &lt;div className="sm:flex sm:items-center sm:justify-center sm:mb-12 ">
+          &lt;div className="sm:flex sm:flex-col sm:w-1/4 mb-4">
+            &lt;h1 className="mt-4 text-xl font-semibold text-gray-900">
+              Employees
+            &lt;/h1>
+            &lt;p className="mt-2 text-sm text-gray-700">
+              A list of all the HRnet employees !
+            &lt;/p>
+          &lt;/div>
+
+          &lt;div className="mt-4 sm:mt-0 sm:ml-16 sm:flex h-auto sm:w-1/4">
+            &lt;label
+              htmlFor="firstname"
+              className="block text-sm font-medium text-gray-700 sm:mt-3 sm:mr-4"
+            >
+              Search
+            &lt;/label>
+            &lt;div className="mt-1">
+              &lt;input
+                onChange={(e) => handleSearch(e.target.value)}
+                type="text"
+                name="firstname"
+                id="firstname"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+                placeholder="Search an employee"
+              />
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+
+        &lt;div className="mb-20 w-full">
+          {search.length > 0 ? (
+            &lt;Tables data={search} />
+          ) : (
+            &lt;Tables data={employees} />
+          )}
+        &lt;/div>
+      &lt;/div>
+    &lt;/>
+  );
+};
+
+export default EmployeeList;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-EmployeeList.html">EmployeeList</a></li><li><a href="module-Error.html">Error</a></li><li><a href="module-Form.html">Form</a></li><li><a href="module-Navigation.html">Navigation</a></li><li><a href="module-Spinner.html">Spinner</a></li><li><a href="module-Tables.html">Tables</a></li><li><a href="module-firebase.html">firebase</a></li><li><a href="module-index.html">index</a></li><li><a href="pages_Private_CreateEmployee.module_js.html">pages/Private/CreateEmployee.js</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AuthContext">AuthContext</a></li><li><a href="global.html#AuthContextProvider">AuthContextProvider</a></li><li><a href="global.html#signIn">signIn</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Jan 30 2023 09:58:36 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
