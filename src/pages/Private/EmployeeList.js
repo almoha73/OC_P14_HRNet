@@ -1,19 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-/**
-
-EmployeeList component
-@module EmployeeList
-@extends React
-@requires react
-@requires react/hooks/useState
-@requires react/hooks/useEffect
-@requires ../../components/Navigation
-@requires ../../components/Table/Tables
-@requires ../../utils/fetchEmployees
-@requires ../../utils/ManageDataEmployees
-@requires ../../utils/TextData
-*/
 import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo.jpg";
 import Navigation from "../../components/Navigation";

@@ -17,8 +17,7 @@ const Tables = ({ data }) => {
     <>
       <Table
         dataSource={data}
-        columns={columns}
-        //size="middle"
+        columns={columns}    
         rowKey={(data) => data.key}
         scroll={{ x: "max-content", y: "500" }}
         pagination={{
