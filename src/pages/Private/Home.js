@@ -1,5 +1,12 @@
-import React from "react";
+/**
+ * Home component for HRNet app
+ * @author [Your Name]
+ * @component
+ * @param {null} none
+ * @returns {JSX} Home component
+ */
 
+import React from "react";
 import mike from "../../assets/mike-von-2hzL3NMOozs-unsplash2.jpg";
 import Navigation from "../../components/Navigation";
 

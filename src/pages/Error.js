@@ -1,5 +1,16 @@
+/**
+@file Error component to display an error message.
+@author Your name
+@module Error
+*/
+
 import React from "react";
 
+/**
+Error component to display an error message and provide a link to go back to the homepage.
+@function
+@returns {JSX.Element} - Rendered error component.
+*/
 const Error = () => {
 	return (
 		<main className="flex flex-col justify-center items-center h-screen gap-12 bg-green-500">

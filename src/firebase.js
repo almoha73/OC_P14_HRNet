@@ -1,3 +1,9 @@
+/**
+ * Initializes Firebase application and exports Firestore and Authentication instances.
+ * 
+ * @module firebase
+ */
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
@@ -5,7 +11,12 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getFirestore } from "@firebase/firestore";
 import { getAuth } from "firebase/auth";
-// Your web app's Firebase configuration
+
+
+/**
+ * Firebase configuration object
+ * @constant
+ */
 const firebaseConfig = {
 	apiKey: "AIzaSyAMoWsiqq4NrVjoiknTKkUSLotdBGAco6I",
 	authDomain: "hrnet-back.firebaseapp.com",
@@ -15,7 +26,20 @@ const firebaseConfig = {
 	appId: "1:572243969716:web:193002f554cd09c97579e1",
 };
 
-// Initialize Firebase
+/**
+ * Firebase application instance
+ * @constant
+ */
 const app = initializeApp(firebaseConfig);
+
+/**
+ * Exported Firestore instance
+ * @constant
+ */
 export const db = getFirestore(app);
+
+/**
+ * Exported Authentication instance
+ * @constant
+ */
 export const auth = getAuth(app);

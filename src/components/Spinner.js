@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+@module Spinner
+@desc A loading spinner component.
+@returns {JSX} A loading spinner represented as a circle with a drop shadow.
+*/
 const Spinner = () => {
 	return (
 		<div id="container">

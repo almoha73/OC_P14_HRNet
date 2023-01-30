@@ -1,3 +1,13 @@
+/**
+@file InputDate component
+This component represents a date picker input with custom styles and calendar icon.
+@param {Object} props - the component's props
+@param {string} props.text - the placeholder text for the date picker input
+@param {Date} props.value - the selected date for the date picker input
+@param {function} props.fn - the onChange callback for the date picker input
+@returns {React.Component} the InputDate component
+*/
+
 import React from "react";
 import DatePicker from "react-datepicker";
 import { CalendarIcon } from "@heroicons/react/20/solid";

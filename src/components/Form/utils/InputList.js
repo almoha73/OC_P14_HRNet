@@ -1,3 +1,15 @@
+/**
+InputList is a functional component that creates a dropdown list for selecting
+either the department or the state. The value and onChange props are passed to the
+Listbox component from the @headlessui/react library to control the selected value
+and handle change events.
+@param {Object} array - The data to be displayed in the dropdown list, either the
+departments or states.
+@param {Object} value - The selected value in the dropdown list.
+@param {function} onChange - A callback function to handle change events.
+@returns {JSX.Element} A dropdown list with options to select the department or state.
+*/
+
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
@@ -7,6 +19,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+/**
+This is a functional component that represents an InputList.
+
+@param {Object} props - The properties passed to the component
+@param {Array} props.array - The data to be displayed in the list
+@param {Object} props.value - The selected value from the list
+@param {Function} props.onChange - A callback function that is called when a new value is selected from the list
+@returns {JSX.Element} A dropdown list using the Listbox component from the headlessui library.
+*/
 export default function InputList({ array, value, onChange }) {
   return (
     <Listbox value={value} onChange={onChange}>

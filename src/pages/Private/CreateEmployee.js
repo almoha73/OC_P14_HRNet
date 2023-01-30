@@ -1,9 +1,23 @@
+/**
+@file CreateEmployee component for HRNet
+@author almoha
+@copyright 2023 almoha
+@description This component renders the create employee form and header section with logo and title.
+@requires react, "react-datepicker/dist/react-datepicker.css", logo, Navigation, Form
+@exports CreateEmployee
+*/
+
 import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import logo from "../../assets/logo.jpg";
 import Navigation from "../../components/Navigation";
 import Form from "../../components/Form/Form";
 
+/**
+CreateEmployee Component
+@function
+@returns {JSX} Render of Create Employee form and header
+*/
 const CreateEmployee = () => {
 	
 	return (

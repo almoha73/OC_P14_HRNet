@@ -4,6 +4,11 @@ import { AuthContext } from "../context/auth/AuthContext";
 import logo from "../assets/logo.jpg";
 import { useForm } from "react-hook-form";
 
+/**
+ * A functional component that displays the login form.
+ * @function
+ * @returns {JSX.Element} - The Login component to render
+ */
 export default function Login() {
 	const { signIn } = useContext(AuthContext);
 	const navigate = useNavigate();
@@ -13,6 +18,13 @@ export default function Login() {
 		formState: { errors },
 	} = useForm();
 
+	/**
+	 * Handles the submit action of the login form.
+	 * 
+	 * @function
+	 * @param {Object} data - The form data submitted by the user.
+	 * @returns {void}
+	 */
 	const onSubmit = async (data) => {
 		console.log(data);
 		try {

@@ -1,15 +1,29 @@
-import React, { useState, Fragment } from "react";
+/**
+@file Form component for employee information
+@author almoha
+@module Form
+*/
+
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import InputDate from "./utils/InputDate";
-
 import { states } from "../../utils/States";
 import { department } from "../../utils/Department";
 import Modal from "modalagnes73";
 import InputList from "./utils/InputList";
 
+/**
+Renders a form to collect employee information and submits to Firebase Firestore.
+Displays a modal component upon successful submission.
+@returns {JSX.Element} Form component
+*/
 const Form = () => {
+  /** 
+React Hook for form management
+@type {Object}
+*/
   const {
     control,
     register,
@@ -17,9 +31,31 @@ const Form = () => {
     reset,
     formState: { errors },
   } = useForm();
+
+  /**
+State hook to manage modal component open/close
+@type {Boolean}
+*/
   const [isOpen, setIsOpen] = useState(false);
+
+  /**
+State hook to manage selected state value
+@type {String}
+*/
   const [selected, setSelected] = useState(states[0]);
+
+  /**
+State hook to manage selected department value
+@type {String}
+*/
   const [selectedDpt, setSelectedDpt] = useState(department[0]);
+
+  /**
+Handles form submission
+Adds employee data to Firebase Firestore
+Resets form, closes modal, and resets selected state and department values
+@param {Object} data - Employee form data
+*/
   const onSubmit = async (data) => {
     console.log(data);
     try {
@@ -58,7 +94,9 @@ const Form = () => {
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
             placeholder="Firstname"
           />
-          {errors.firstName?.type === 'required' && <p role="alert">First name is required</p>}
+          {errors.firstName?.type === "required" && (
+            <p role="alert">First name is required</p>
+          )}
         </div>
         <div className="mt-8">
           <label
