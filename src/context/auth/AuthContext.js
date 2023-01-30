@@ -13,7 +13,7 @@ import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import Spinner from "../../components/Spinner";
 
-console.log(auth);
+//console.log(auth);
 
 /**
 @constant AuthContext
@@ -62,7 +62,7 @@ export function AuthContextProvider({ children }) {
     currentUser,
   };
 
-  console.log(value);
+ // console.log(value);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

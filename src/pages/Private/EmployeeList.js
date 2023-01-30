@@ -25,7 +25,7 @@ const EmployeeList = () => {
     const loadData = async () => {
       const result = [];
       const data = await getEmployees();
-      console.log(data);
+      //console.log(data);
       await data.forEach((query) =>
         result.push({ key: query.id, employees: query.data() })
       );
@@ -65,7 +65,7 @@ Creates array of TextData objects
         )
       );
     });
-    console.log(textArray);
+    //console.log(textArray);
     return textArray;
   }
 
