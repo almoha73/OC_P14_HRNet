@@ -5,7 +5,7 @@
 */
 
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller} from "react-hook-form";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import InputDate from "./utils/InputDate";
@@ -94,9 +94,7 @@ Resets form, closes modal, and resets selected state and department values
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
             placeholder="Firstname"
           />
-          {errors.firstName?.type === "required" && (
-            <p role="alert">First name is required</p>
-          )}
+          {errors.firstname && <p className="text-red-500">Please enter a Firstname</p>}
         </div>
         <div className="mt-8">
           <label
@@ -106,13 +104,14 @@ Resets form, closes modal, and resets selected state and department values
             Lastname
           </label>
           <input
-            {...register("lastname", { required: true })}
+            {...register("lastname", { required: true})}
             type="text"
             name="lastname"
             id="lastname"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
             placeholder="Lastname"
           />
+          {errors.lastname && <p className="text-red-500">Please enter a Lastname</p>}
         </div>
         <div className="mt-8">
           <label
@@ -131,6 +130,7 @@ Resets form, closes modal, and resets selected state and department values
                   value={field.value}
                   fn={(date) => field.onChange(date)}
                 />
+                 {errors.birthDate && <p className="text-red-500">{errors.birthDate.message}</p>}
               </>
             )}
           />
@@ -153,6 +153,7 @@ Resets form, closes modal, and resets selected state and department values
                   value={field.value}
                   fn={(date) => field.onChange(date)}
                 />
+                {errors.startDate && <p className="text-red-500">{errors.startDate.message}</p>}
               </>
             )}
           />
@@ -175,6 +176,7 @@ Resets form, closes modal, and resets selected state and department values
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
               placeholder="street"
             />
+            {errors.street && <p className="text-red-500">This field is required</p>}
           </div>
           <div className="mt-8 w-11/12 sm:w-1/2 mx-auto mb-8">
             <label
@@ -192,6 +194,7 @@ Resets form, closes modal, and resets selected state and department values
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
               placeholder="city"
             />
+            {errors.city && <p className="text-red-500">This field is required</p>}
           </div>
           <Controller
             name="state"
@@ -217,13 +220,14 @@ Resets form, closes modal, and resets selected state and department values
             </label>
 
             <input
-              {...register("zip", { required: true })}
+              {...register("zip", { required: true, pattern: /^[0-9]+$/ })}
               type="number"
               name="zip"
               id="zip"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
               placeholder="zip"
             />
+            {errors.zip && <p className="text-red-500">Please enter a valid zip code</p>}
           </div>
         </div>
         <Controller
